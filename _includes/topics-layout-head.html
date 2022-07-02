@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+  <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="pl-PL">
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta charset="utf-8" />
+      <meta name="robots" content="noindex">
+      <meta name="series" content="{{ page.series }}" />
+      <meta name="title" content="{{ page.title }}" />
+      <meta name="alt-title" content="{{ page.alt-title }}" />
+      <meta name="subject" content="{{ page.subject }}" />
+      <meta name="createdate" content="{{ page.createdate }}" />
+      <meta name="keywords" content="{{ page.keywords }}" />
+      <meta name="author" content="{{ page.author }}" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+      <title>{{page.alt-title}}</title>
+      <link rel="stylesheet" href={{ "/assets/css/w3.css" | relative_url | prepend: '"' | append: '"'}} />
+      <link rel="stylesheet" href={{ "/assets/css/syntax.css" | relative_url | prepend: '"' | append: '"'}} />
+      <link rel="stylesheet" href={{ "/assets/css/naxiom.css" | relative_url | prepend: '"' | append: '"'}} />
+      <link rel="stylesheet" href={{ "/assets/css/layout.css" | relative_url | prepend: '"' | append: '"'}} />
+      <link rel="icon" href={{ "/assets/favicon.ico" | relative_url | prepend: '"' | append: '"'}}" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!-- Script pointing to search-script.js -->
+      <script src= {{ "/assets/scripts/search-script.js" | relative_url | prepend: '"' | append: '"'}} type="text/javascript"></script>
+      <script src= {{ "/assets/scripts/docs.js" | relative_url | prepend: '"' | append: '"'}} type="text/javascript"></script>
+  </head>

@@ -1,0 +1,15 @@
+I"l<p>Przykładowy scenariusz konfigurowania pomocy dla użytkownika może wyglądać następująco:</p>
+
+<ol>
+  <li>Dodać treść pomocy do elementów aplikacji.</li>
+  <li>Zdefiniować formularz do wyświetlania pomocy.</li>
+  <li>Zdefiniować akcje otwierania formularza z przekazywaniem identyfikatora formularza/statusu i listy.</li>
+  <li>Przypisać akcje wykonywane po kliknięciu przycisku pomocy:
+    <ul>
+      <li>w ustawieniach systemowych</li>
+      <li>indywidualnie dla dokumentu biznesowego</li>
+    </ul>
+  </li>
+  <li>Skonfigurować opcje wyświetlania przycisku pomocy dla list i formularzy.</li>
+</ol>
+:ET

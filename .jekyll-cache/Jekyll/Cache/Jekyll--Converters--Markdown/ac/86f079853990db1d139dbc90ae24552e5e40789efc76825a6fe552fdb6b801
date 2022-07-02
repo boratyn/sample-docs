@@ -1,0 +1,102 @@
+I"X;<p>Do wyświetlania treści pomocy potrzebny jest formularz. Najprościej go utworzyć poleceniem <code class="language-plaintext highlighter-rouge">Generuj elementy aplikacji</code> w <code class="language-plaintext highlighter-rouge">Kreatorze modeli danych</code>. Wystarczy użyć uproszczonego modelu danych (formularz będzie wyświetlał statyczne dane i nie będzie służył do przetwarzania dokumentów).</p>
+
+<p>Formularz do wyświetlania treści pomocy można zdefiniować na kilka sposobów. Przedstawiony poniżej ma wyłącznie charakter poglądowy.</p>
+
+<ol>
+  <li>Zdefiniuj uproszczony model danych i w jego tabeli zdefiniuj pola <em>ParentId</em> i <em>StatusId</em> (typ <em>liczba całkowita</em>, anuluj zaznaczenie pole <code class="language-plaintext highlighter-rouge">Wymagane</code>). Będą to tzw. <em>pola techniczne</em> do przekazania identyfikatorów elementów, dla których ma zostać wyświetlona pomoc.
+    <figure class="image" style="float:;clear:">
+   
+<img id="help-form-pl-1800-1.png" src="/sample-docs/assets/images/manuals/help-form-pl-1800-1.png" alt="" title="help-form-pl-1800-1.png" width="" height="" />
+<figcaption>  </figcaption></figure>
+  </li>
+  <li>Uruchom polecenie <code class="language-plaintext highlighter-rouge">Generuj elementy aplikacji</code> dla utworzonego modelu danych.</li>
+  <li>Przejdź do projektu utworzonego formularza i usuń sekcje pól użytkownika, załączników i komentarzy (opcjonalnie), a dla sekcji pól systemowych wyłącz przełączniki <code class="language-plaintext highlighter-rouge">Aktywna</code> i <code class="language-plaintext highlighter-rouge">Aktywna w wersji mobile</code> oraz zmniejsz szerokość kolumny macierzystej do 1 kolumny.</li>
+  <li>Dodaj nową kolumnę, a w niej dodaj trzy sekcje o nazwach <em>Pomoc dla statusu</em>, <em>Pomoc dla formularza</em> i <em>Pomoc dla dokumentu biznesowego</em>; dla wszystkich wybierz <code class="language-plaintext highlighter-rouge">Sekcja HTML</code> jako typ sekcji.</li>
+  <li>Kliknij przycisk <code class="language-plaintext highlighter-rouge">Ustawienia</code> i skonfiguruj sekcje zgodnie z przykładami podanymi poniżej.</li>
+</ol>
+
+<p>Sekcja <code class="language-plaintext highlighter-rouge">Pomoc dla statusu</code>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Zezwól na parsowanie HTML z pól formularza (unsecure)</code>: włącz ten przełącznik, aby obsłużyć treść pomocy wprowadzoną jako kod HTML</p>
+
+<p><code class="language-plaintext highlighter-rouge">Edytor SQL Query</code>:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">Value</span><span class="p">]</span> <span class="k">as</span> <span class="n">TranslatedHelp</span>
+  <span class="k">FROM</span>   <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Translations</span><span class="p">]</span> <span class="n">translations</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">TranslationDefinitions</span><span class="p">]</span> <span class="n">translationDefinitions</span>
+  <span class="k">ON</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">translations</span><span class="p">.</span><span class="n">TranslationDefinitionId</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">BusinessStatuses</span><span class="p">]</span> <span class="n">businessStatuses</span>
+  <span class="k">ON</span> <span class="n">businessStatuses</span><span class="p">.</span><span class="n">Help</span> <span class="o">=</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Guid</span>
+  <span class="k">WHERE</span>  <span class="n">translations</span><span class="p">.</span><span class="n">LanguageId</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">_LangId</span><span class="err">}</span>
+  <span class="k">AND</span> <span class="n">businessStatuses</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">StatusId</span><span class="err">}</span> <span class="c1">-- wartość StatusId zostanie przekazana w akcji otwierania formularza</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">Edytor HTML</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- treść pomocy zwrócona przez zapytanie SQL --&gt;</span>
+<span class="nt">&lt;QueryRowTemplate&gt;</span>{@Query_TranslatedHelp}<span class="nt">&lt;/QueryRowTemplate&gt;</span>
+</code></pre></div></div>
+
+<p>Sekcja <code class="language-plaintext highlighter-rouge">Pomoc dla formularza</code>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Edytor SQL Query</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">Value</span><span class="p">]</span> <span class="k">as</span> <span class="n">TranslatedHelp</span>
+  <span class="k">FROM</span>   <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Translations</span><span class="p">]</span> <span class="n">translations</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">TranslationDefinitions</span><span class="p">]</span> <span class="n">translationDefinitions</span>
+  <span class="k">ON</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">translations</span><span class="p">.</span><span class="n">TranslationDefinitionId</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Forms</span><span class="p">]</span> <span class="n">forms</span>
+  <span class="k">ON</span> <span class="n">forms</span><span class="p">.</span><span class="n">Help</span> <span class="o">=</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Guid</span>
+  <span class="k">WHERE</span>  <span class="n">translations</span><span class="p">.</span><span class="n">LanguageId</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">_LangId</span><span class="err">}</span>
+  <span class="k">AND</span> <span class="n">forms</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">ParentId</span><span class="err">}</span>  <span class="c1">-- wartość ParentId zostanie przekazana w akcji otwierania formularza</span>
+</code></pre></div></div>
+<p>Pozostałe ustawienia, jak w poprzedniej sekcji.</p>
+
+<p>Sekcja <code class="language-plaintext highlighter-rouge">Pomoc dla dokumentu biznesowego</code>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Edytor SQL Query</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">Value</span><span class="p">]</span> <span class="k">as</span> <span class="n">TranslatedHelp</span>
+  <span class="k">FROM</span>   <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Translations</span><span class="p">]</span> <span class="n">translations</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">TranslationDefinitions</span><span class="p">]</span> <span class="n">translationDefinitions</span>
+  <span class="k">ON</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">translations</span><span class="p">.</span><span class="n">TranslationDefinitionId</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">BusinessDocuments</span><span class="p">]</span> <span class="n">businessDocuments</span>
+  <span class="k">ON</span> <span class="n">businessDocuments</span><span class="p">.</span><span class="n">Help</span> <span class="o">=</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Guid</span>
+  <span class="k">WHERE</span>  <span class="n">translations</span><span class="p">.</span><span class="n">LanguageId</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">_LangId</span><span class="err">}</span>
+  <span class="k">AND</span> <span class="n">businessDocuments</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> 
+    <span class="p">(</span><span class="k">SELECT</span> <span class="n">BusinessDocumentId</span>
+       <span class="k">FROM</span> <span class="n">core</span><span class="p">.</span><span class="n">Forms</span>
+       <span class="k">WHERE</span> <span class="n">Forms</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">ParentId</span><span class="err">}</span><span class="p">)</span>  <span class="c1">-- wartość ParentId zostanie przekazana w akcji otwierania formularza</span>
+</code></pre></div></div>
+
+<p>Pozostałe ustawienia, jak w poprzedniej sekcji. Na koniec zapisz formularz.</p>
+
+<p>Następnie utwórz kopię tego formularza w celu wyświetlania pomocy dla list. W tym formularzu możliwe będzie wyświetlanie pomocy dla list i dla dokumentu biznesowego, dlatego usuń sekcję <em>Pomoc dla statusu</em>, a nazwę sekcji pomocy dla formularza zmień na <code class="language-plaintext highlighter-rouge">Pomoc dla listy</code>. Konieczne będą także zmiany zapytania SQL pobierającego treść pomocy do wyświetlenia.</p>
+
+<p>Sekcja <code class="language-plaintext highlighter-rouge">Pomoc dla list</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">Value</span><span class="p">]</span> <span class="k">as</span> <span class="n">TranslatedHelp</span>
+  <span class="k">FROM</span>   <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Translations</span><span class="p">]</span> <span class="n">translations</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">TranslationDefinitions</span><span class="p">]</span> <span class="n">translationDefinitions</span>
+  <span class="k">ON</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">translations</span><span class="p">.</span><span class="n">TranslationDefinitionId</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Grids</span><span class="p">]</span> <span class="n">grids</span>
+  <span class="k">ON</span> <span class="n">forms</span><span class="p">.</span><span class="n">Help</span> <span class="o">=</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Guid</span>
+  <span class="k">WHERE</span>  <span class="n">translations</span><span class="p">.</span><span class="n">LanguageId</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">_LangId</span><span class="err">}</span>
+  <span class="k">AND</span> <span class="n">forms</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">ParentId</span><span class="err">}</span>  <span class="c1">-- wartość ParentId zostanie przekazana w akcji otwierania formularza</span>
+</code></pre></div></div>
+
+<p>Sekcja <code class="language-plaintext highlighter-rouge">Pomoc dla dokumentu biznesowego</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">Value</span><span class="p">]</span> <span class="k">as</span> <span class="n">TranslatedHelp</span>
+  <span class="k">FROM</span>   <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Translations</span><span class="p">]</span> <span class="n">translations</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">TranslationDefinitions</span><span class="p">]</span> <span class="n">translationDefinitions</span>
+  <span class="k">ON</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">translations</span><span class="p">.</span><span class="n">TranslationDefinitionId</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">BusinessDocuments</span><span class="p">]</span> <span class="n">businessDocuments</span>
+  <span class="k">ON</span> <span class="n">businessDocuments</span><span class="p">.</span><span class="n">Help</span> <span class="o">=</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Guid</span>
+  <span class="k">WHERE</span>  <span class="n">translations</span><span class="p">.</span><span class="n">LanguageId</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">_LangId</span><span class="err">}</span>
+  <span class="k">AND</span> <span class="n">businessDocuments</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> 
+    <span class="p">(</span><span class="k">SELECT</span> <span class="n">BusinessDocumentId</span>
+       <span class="k">FROM</span> <span class="n">core</span><span class="p">.</span><span class="n">Grids</span>
+       <span class="k">WHERE</span> <span class="n">Grids</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">ParentId</span><span class="err">}</span><span class="p">)</span>  <span class="c1">-- wartość ParentId zostanie przekazana w akcji otwierania formularza</span>
+</code></pre></div></div>
+
+<p>Jest możliwe obsłużenie pomocy za pomocą jednego tylko formularza z czterema sekcjami. Sekcje niepotrzebne w konkretnym przypadku byłyby ukrywane. Jednak takie rozwiązanie wydaje się bardziej skomplikowane.</p>
+:ET

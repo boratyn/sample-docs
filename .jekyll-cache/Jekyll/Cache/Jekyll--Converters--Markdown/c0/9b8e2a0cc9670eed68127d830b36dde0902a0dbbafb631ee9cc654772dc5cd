@@ -1,0 +1,14 @@
+I"/<p>Kliknij podmenu <code class="language-plaintext highlighter-rouge">Akcje</code> w menu <code class="language-plaintext highlighter-rouge">NARZĘDZIA</code>, a następnie kliknij polecenie <code class="language-plaintext highlighter-rouge">Otwieranie formularza</code>. Kliknij przycisk <code class="language-plaintext highlighter-rouge">Nowa akcja</code>. Skonfiguruj wymagane parametry. Kliknij przycisk <code class="language-plaintext highlighter-rouge">Wybierz z listy</code> i wybierz z listy odpowiedni formularz. Następnie kliknij przycisk <code class="language-plaintext highlighter-rouge">Wybierz parametry i wartości</code> i skonfiguruj przekazywanie identyfikatorów, zależnie od formularza docelowego, jak na poniższych ilustracjach.</p>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="help-actions-openform-pl-1800-1.png" src="/sample-docs/assets/images/manuals/help-actions-openform-pl-1800-1.png" alt="Wyświetlanie pomocy dla formularzy" title="help-actions-openform-pl-1800-1.png" width="" height="" />
+   <figcaption> Wyświetlanie pomocy dla formularzy </figcaption></figure>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="help-actions-openform-pl-1800-2.png" src="/sample-docs/assets/images/manuals/help-actions-openform-pl-1800-2.png" alt="Wyświetlanie pomocy dla list" title="help-actions-openform-pl-1800-2.png" width="" height="" />
+   <figcaption> Wyświetlanie pomocy dla list </figcaption></figure>
+
+<p>Na podstawie przekazanych wartości parametrów zapytania w sekcjach HTML zwrócą odpowiednią treść pomocy.</p>
+:ET

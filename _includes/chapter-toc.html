@@ -1,0 +1,13 @@
+
+{% capture conref %}{{ include.topic-id }}{% endcapture %}
+{% assign topic = site.topics | where:"id", conref  | first %}
+
+{% if page.topics[0] %}
+<p class="toc-label">Na tej stronie:</p>
+<ul>
+{%- for item in page.topics -%}
+{% assign toctopic = site.topics | where:"id", item  | first %}
+  <li><a href="#{{ item | remove: '/topics/'}}">{% if toctopic.alt-title %}{{ toctopic.alt-title | append: " — "}}{% endif %}{{ toctopic.title }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}

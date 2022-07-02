@@ -1,0 +1,10 @@
+I"�<p>Ustawienia dostępne na tej karcie:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Nadpisz domyślne ustawienia systemu</code>: włącz, aby móc wybrać akcje przycisku pomocy dla formularzy i list przypisanych do tego dokumentu biznesowego.</li>
+  <li><code class="language-plaintext highlighter-rouge">Formularze</code>: wybierz sekwencję akcji dla przycisku pomocy wyświetlanego na formularzach.</li>
+  <li><code class="language-plaintext highlighter-rouge">Listy</code>: wybierz sekwencję akcji dla przycisku pomocy wyświetlanego na listach.</li>
+  <li><code class="language-plaintext highlighter-rouge">Zapisz zmiany i zamknij</code>: kliknij, aby zapisać zmiany i zamknąć okno dialogowe.</li>
+</ul>
+
+:ET

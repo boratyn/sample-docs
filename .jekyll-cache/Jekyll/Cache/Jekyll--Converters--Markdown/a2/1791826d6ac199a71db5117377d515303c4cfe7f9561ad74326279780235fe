@@ -1,0 +1,20 @@
+I"	<ol>
+  <li>Zaloguj się do front-office jako użytkownik z rolą <code class="language-plaintext highlighter-rouge">Administrator</code>.</li>
+  <li>
+    <p>Kliknij polecenie <code class="language-plaintext highlighter-rouge">Lista użytkowników</code> w menu głównym.<br />
+Zostanie wyświetlone okno <code class="language-plaintext highlighter-rouge">Lista użytkowników</code>.</p>
+
+    <figure class="image" style="float:;clear:">
+   
+<img id="env-1600-1.png" src="/sample-docs/assets/images/manuals/env-1600-1.png" alt="Lista użytkowników" title="env-1600-1.png" width="" height="" />
+<figcaption> Lista użytkowników </figcaption></figure>
+  </li>
+</ol>
+
+<p>W tym oknie są dostępne następujące przyciski:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Dodaj użytkownika</code>: wyświetla okno, w którym można wpisać dane nowego konta użytkownika.</li>
+  <li><code class="language-plaintext highlighter-rouge">Pobierz przełożonych dla użytkowników AD</code>: pobiera informacje o przełożonych użytkowników, których dane zostały zaimportowane z zewnętrznego systemu usług katalogowych.</li>
+  <li><code class="language-plaintext highlighter-rouge">Edytuj</code>: wyświetla okno, w którym można edytować dane użytkownika.</li>
+</ul>
+:ET

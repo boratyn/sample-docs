@@ -1,0 +1,237 @@
+I"_
+<p class="toc-label">Na tej stronie:</p>
+<ul>
+  <li><a href="#pba-intro-pl">Wprowadzenie — Model uprawnień PBA</a></li>
+
+  <li><a href="#pba-scenario-pl">Scenariusz — Inicjowanie modelu uprawnień PBA</a></li>
+
+  <li><a href="#pba-set-admin-pl">Wyznaczanie administratora uprawnień PBA</a></li>
+
+  <li><a href="#pba-adm-perm-list-pl">Uprawnienia administracyjne</a></li>
+
+  <li><a href="#pba-set-perm-pl">Ustawianie uprawnień ról/użytkowników</a></li>
+
+  <li><a href="#pba-sys-users-list-pl">Uprawnienia w obszarze Zarządzanie użytkownikami</a></li>
+
+  <li><a href="#pba-sys-app-list-pl">Uprawnienia w obszarze Globalne uprawnienia aplikacji</a></li>
+
+</ul>
+
+<p><span id="top"></span></p>
+
+<h2>
+
+Model uprawnień PBA — Wprowadzenie
+
+</h2>
+<p><span id="pba-intro-pl"></span></p>
+
+<div class="bs-callout bs-callout-primary"> <b>Abstract:</b> Model uprawnień PBA obejmuje uprawnienia do wykonywania określonych czynności w systemie przypisywane rolom biznesowym i indywidualnym użytkownikom. Te uprawnienia są przypisywane po stronie front-office.</div>
+
+<div class="bs-callout bs-callout-default"> <b>Path:</b> Menu front-office, sekcja <code class="language-plaintext highlighter-rouge">ZARZĄDZANIE UPRAWNIENIAMI</code>, polecenia <code class="language-plaintext highlighter-rouge">Administracja</code> i <code class="language-plaintext highlighter-rouge">Systemowe</code>. Domyślnie dostęp do tych poleceń ma tylko profil użytkownika <em>superuser</em>.</div>
+
+<p>Model uprawnień <em>Permissions Based Authorization</em> (autoryzacja oparta na uprawnieniach) pozwala kontrolować dostęp użytkowników do wykonywania określonych czynności w systemie na podstawie posiadanych przez nich uprawnień. Proces przyznawania uprawnień odbywa się po stronie <em>front-office</em> (w aplikacji <em>FrontSPA</em>).</p>
+<ul>
+  <li>Uprawnienia mogą być przyznawane rolom biznesowym oraz indywidualnym użytkownikom.</li>
+  <li>Uprawnienia wynikowe każdego użytkownika stanowią logiczną sumę uprawnień przypisanych w ramach każdej jego roli oraz indywidualnie jego profilowi; to znaczy, że aby pozbawić użytkownika danego uprawnienia, należy je wyłączyć zarówno w jego profilu, jak i we wszystkich jego rolach.</li>
+  <li>Weryfikacja uprawnień odbywa się podczas logowania użytkownika (zmiana uprawnień zaczyna obowiązywać po ponownym zalogowaniu użytkownika).</li>
+  <li>Zarządzanie uprawnieniami w modelu PBA odbywa się na dwóch poziomach:
+    <ul>
+      <li>Poziom administracji uprawnieniami: wyznaczanie użytkowników, którzy będą mogli definiować uprawnienia innych użytkowników (administratorzy uprawnień)</li>
+      <li>Poziom przypisywania uprawnień: przypisywanie rolom i użytkownikom uprawnień z predefiniowanych obszarów uprawnień w nAxiom, np. uprawnień powiązanych z zarządzaniem użytkownikami, uprawnień do korzystania z aplikacji, do rozbudowy aplikacji itp.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>
+
+Inicjowanie modelu uprawnień PBA
+
+</h2>
+<p><span id="pba-scenario-pl"></span></p>
+
+<div class="bs-callout bs-callout-primary"> <b>Abstract:</b> Po zainstalowaniu witryny nAxiom w nowym środowisku konieczne jest zainicjowanie modelu uprawnień PBA. Początkowa konfiguracja obejmuje profil użytkownika <em>superuser</em>, który ma tylko uprawnienie <code class="language-plaintext highlighter-rouge">Dostęp do administracji uprawnieniami</code>. Ponadto dostępne są dwa predefiniowane profile użytkowników „systemowych”: <em>admin</em> i <em>consultant</em>, które jednak nie mają przypisanych żadnych uprawnień.</div>
+
+<p>W celu zainicjowania modelu PBA należy skorzystać z predefiniowanego profilu użytkownika <em>superuser</em> (domyślne hasło <em>!Q2w3e4r%T</em>). Ten profil odgrywa rolę <em>superadministratora uprawnień</em>, to znaczy może wyznaczać użytkowników (w tym siebie) jako administratorów uprawnień. Temu użytkownikowi nie można odebrać uprawnień do administracji uprawnieniami.</p>
+
+<p>W szkicowaniu scenariuszy inicjowania modelu uprawnień PBA można wyróżnić dwa podstawowe przypadki:</p>
+
+<ul>
+  <li>środowisko nAxiom z pustą bazą danych, tj. brak profili użytkowników innych niż systemowe</li>
+  <li>środowisko nAxiom z bazą danych zawierającą profile użytkowników i role biznesowe</li>
+</ul>
+
+<p>Pierwszy przypadek jest bardziej złożony, dlatego zostanie opisany poniżej. W drugim przypadku wystarczy pominąć kroki związane z definiowaniem ról użytkownika i profili użytkowników.</p>
+
+<div class="alert alert-warning" role="alert"><i class="fa fa-warning"></i> <b>Important:</b> Uprawnienia PBA są weryfikowane podczas logowania użytkownika, dlatego każda zmiana uprawnień zalogowanego użytkownika zacznie obowiązywać dopiero po jego wylogowaniu i ponownym zalogowaniu.</div>
+
+<ol>
+  <li>Użytkownik <em>superuser</em> wyznacza użytkownika <em>admin</em> jako administratora uprawnień w obszarach <em>Zarządzanie użytkownikami</em> oraz <em>Globalne uprawnienia aplikacji</em>. Alternatywnie, <em>superuser</em> może wyznaczyć siebie jako administratora uprawnień w obu obszarach.</li>
+  <li>Użytkownik <em>admin</em> przyznaje użytkownikowi <em>consultant</em> komplet uprawnień z obszaru <em>Globalne uprawnienia aplikacji</em></li>
+  <li>Użytkownik <em>consultant</em> loguje się do back-office, gdzie definiuje co najmniej jedną aplikację i zestaw ról biznesowych; ewentualnie może być konieczne włączenie dla określonych ról biznesowych systemowych pozycji menu front-office, np. <code class="language-plaintext highlighter-rouge">Użytkownicy</code>, <code class="language-plaintext highlighter-rouge">Uprawnienia</code> itp.</li>
+  <li>Użytkownik <em>admin</em> loguje się do front-office i definiuje profile użytkowników.</li>
+  <li>W razie potrzeby <em>superuser</em> może wyznaczyć kolejnych administartorów uprawnień w obu obszarach.</li>
+  <li>Administratorzy uprawnień przypisują rolom biznesowym i użytkownikom role z obszarów uprawnień.</li>
+</ol>
+
+<blockquote class="bs-callout bs-callout-warning">
+  <p><strong>Zapamiętaj:</strong></p>
+  <ul>
+    <li>Bez uprawnienia <code class="language-plaintext highlighter-rouge">Używanie wszystkich aplikacji</code> (<code class="language-plaintext highlighter-rouge">Uprawnienia systemowe</code> &gt; <code class="language-plaintext highlighter-rouge">Globalne uprawnienia aplikacji</code>) inne posiadane przez niego uprawnienia będą nieskuteczne, z wyjątkiem uprawnienia <code class="language-plaintext highlighter-rouge">Zmiana własnego hasła</code>.</li>
+    <li>Niezależnie od uprawnień PBA, użytkownikom, którzy mają zarządzać profilami użytkowników, należy przypisać rolę biznesową z dostępem do polecenia <code class="language-plaintext highlighter-rouge">Lista użytkowników</code> (ewentualnie <code class="language-plaintext highlighter-rouge">Drzewo listy użytkowników</code>.</li>
+    <li>Analogicznie, administratorzy uprawnień będą mieli dostęp do obszarów uprawnień po przypisaniu im ról biznesowych z włączonym dostępem do menu <code class="language-plaintext highlighter-rouge">Zarządzanie uprawnieniami</code> &gt; <code class="language-plaintext highlighter-rouge">Systemowe</code>; domyślnie to menu jest dostępne tylko dla posiadaczy roli systemowej <code class="language-plaintext highlighter-rouge">Administrator</code>.</li>
+    <li>Czynności związane z tworzeniem i edytowaniem profili użytkownika są dostępne tylko dla użytkowników z przypisaną rolą systemową <em>Administrator</em>.</li>
+    <li>Dostęp do back-office (zarządzanie definicjami aplikacji, rozbudowa aplikacji) wymaga posiadania roli <em>Konsultant</em></li>
+    <li>Jeśli podczas instalowania witryny nie zostanie wskazana licencja, użytkownik systemowy <em>consultant</em> ma uprawnienia do zaimportowania licencji podczas pierwszego uruchomienia. Dopiero wtedy można będzie zalogować się na konto <em>superuser</em> i zarządzać uprawnieniami.</li>
+    <li>Użytkownik <em>superuser</em> ma na stałe przypisane uprawnienie do wyznaczania administratorów uprawnień (pole wyboru <code class="language-plaintext highlighter-rouge">Dostęp do administracji uprawnieniami</code>) i nie można tego zmienić. Po zainicjowaniu uprawnień PBA ten profil można dezaktywować.</li>
+  </ul>
+</blockquote>
+
+<div class="bs-callout bs-callout-info"> <b>Related topics:</b>
+<ul>
+  <li><a href="/sample-docs/topics/environment-userlist-pl.html">Wyświetlanie listy użytkowników</a></li>
+
+  <li><a href="/sample-docs/topics/environment-rolepermissions-pl.html">Nadawanie uprawnień roli</a></li>
+
+</ul>
+</div>
+
+<h2>
+
+Wyznaczanie administratora uprawnień PBA
+
+</h2>
+<p><span id="pba-set-admin-pl"></span></p>
+
+<div class="bs-callout bs-callout-primary"> <b>Abstract:</b> Administrator uprawnień to użytkownik, który może nadawać uprawnienia innym użytkownikom. W modelu PBA można wyróżnić trzy kategorie administratorów uprawnień:
+- superadministrator uprawnień: może wyznaczać innych administratorów uprawnień
+- administrator uprawnień w obszarze <code class="language-plaintext highlighter-rouge">Zarządzanie użytkownikami</code>: może przypisywać uprawnienia dotyczące zarządzania profilami użytkowników
+- administrator uprawnień w obszarze <code class="language-plaintext highlighter-rouge">Globalne uprawnienia aplikacji</code>: może przypisywać uprawnienia dotyczące używania aplikacji i ich tworzenia</div>
+
+<p>Aby wyznaczyć administratora uprawnień:</p>
+<ol>
+  <li>Zaloguj się, korzystając z profilu <em>superuser</em> lub z profilu użytkownika, który ma uprawnienia do administrowania uprawnieniami.</li>
+  <li>Kliknij polecenie <code class="language-plaintext highlighter-rouge">Administracja</code> w sekcji <code class="language-plaintext highlighter-rouge">ZARZĄDZANIE UPRAWNIENIAMI</code> w menu po lewej stronie. Zostanie wyświetlony ekran <code class="language-plaintext highlighter-rouge">Administracja uprawnieniami</code>.</li>
+  <li>Kliknij pozycję na karcie <code class="language-plaintext highlighter-rouge">Role biznesowe</code> lub kliknij kartę <code class="language-plaintext highlighter-rouge">Użytkownicy</code> i kliknij profil użytkownika, któremu chcesz nadać uprawnienia. Zostanie wyświetlona lista dostępnych uprawnień.</li>
+  <li>
+    <p>Zaznacz odpowiednie pola wyboru i kliknij przycisk <code class="language-plaintext highlighter-rouge">Zapisz</code></p>
+
+    <figure class="image" style="float:;clear:">
+   
+<img id="pba-set-admin-1800-1.png" src="/sample-docs/assets/images/manuals/pba-set-admin-1800-1.png" alt="" title="pba-set-admin-1800-1.png" width="" height="" />
+<figcaption>  </figcaption></figure>
+  </li>
+</ol>
+
+<h2>
+
+Uprawnienia administracyjne
+
+</h2>
+<p><span id="pba-adm-perm-list-pl"></span></p>
+
+<p>Po kliknięciu polecenia <code class="language-plaintext highlighter-rouge">Administracja</code> w sekcji <code class="language-plaintext highlighter-rouge">ZARZĄDZANIE UPRAWNIENIAMI</code> i wybraniu roli biznesowej lub użytkownika zostają wyświetlone pola wyboru uprawnień administracyjnych:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Dostęp do administracji uprawnieniami</code>: uprawnienie do wyznaczania innych superadministratorów uprawnień oraz administratorów w obszarach uprawnień.</li>
+  <li><code class="language-plaintext highlighter-rouge">Dostęp do administracji uprawnieniami systemowymi 'Zarządzanie użytkownikami'</code>: uprawnienie do nadawania/odbierania użytkownikom i rolom biznesowym uprawnień w obszarze <em>Zarządzanie użytkownikami</em>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Dostęp do administracji uprawnieniami systemowymi 'Globalne uprawnienia aplikacji'</code>: uprawnienie do nadawania/odbierania użytkownikom i rolom biznesowym uprawnień w obszarze <em>Globalne uprawnienia aplikacji</em>.</li>
+</ul>
+
+<h2>
+
+Ustawianie uprawnień ról/użytkowników
+
+</h2>
+<p><span id="pba-set-perm-pl"></span></p>
+
+<p>Aby ustawić uprawnienia roli/użytkownika:</p>
+
+<ol>
+  <li>Zaloguj się, korzystając z profilu użytkownika, który jest administartorem uprawnień systemowych w obszarze <em>Zarządzanie użytkownikami</em> lub <em>Globalne uprawnienia aplikacji</em>.</li>
+  <li>Kliknij polecenie <code class="language-plaintext highlighter-rouge">Systemowe</code> w sekcji <code class="language-plaintext highlighter-rouge">ZARZĄDZANIE UPRAWNIENIAMI</code> w menu po lewej stronie. Zostanie wyświetlony ekran <code class="language-plaintext highlighter-rouge">Uprawnienia systemowe</code>.</li>
+  <li>Kliknij pozycję na karcie <code class="language-plaintext highlighter-rouge">Role biznesowe</code> lub kliknij kartę <code class="language-plaintext highlighter-rouge">Użytkownicy</code> i kliknij profil użytkownika, któremu chcesz nadać uprawnienia. Zostanie wyświetlona lista dostępnych uprawnień.</li>
+  <li>
+    <p>Zaznacz pola wyboru obok odpowiednich uprawnień i kliknij przycisk <code class="language-plaintext highlighter-rouge">Zapisz</code>.</p>
+
+    <figure class="image" style="float:;clear:">
+   
+<img id="pba-set-perm-pl-1800-1.png" src="/sample-docs/assets/images/manuals/pba-set-perm-pl-1800-1.png" alt="" title="pba-set-perm-pl-1800-1.png" width="" height="" />
+<figcaption>  </figcaption></figure>
+  </li>
+</ol>
+
+<h2>
+
+Uprawnienia w obszarze Zarządzanie użytkownikami
+
+</h2>
+<p><span id="pba-sys-users-list-pl"></span></p>
+
+<p><code class="language-plaintext highlighter-rouge">Zarządzanie użytkownikami</code> to obszar grupujący uprawnienia do zarządzania profilami użytkowników; uprawnienia z tego obszaru mają zastosowanie tylko do użytkowników, którzy mają dostęp do poleceń <code class="language-plaintext highlighter-rouge">Lista użytkowników</code> i/lub <code class="language-plaintext highlighter-rouge">Drzewo listy użytkowników</code> we front-office (back-office: <code class="language-plaintext highlighter-rouge">ADMINISTRACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Role biznesowe</code> &gt; <code class="language-plaintext highlighter-rouge">Uprawnienia</code> &gt; <code class="language-plaintext highlighter-rouge">Użytkownicy</code> / <code class="language-plaintext highlighter-rouge">Lista użytkowników</code> / <code class="language-plaintext highlighter-rouge">Drzewo listy użytkowników</code>); obszar obejmuje następujące uprawnienia i grupy uprawnień:</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> uprawnienia w tym obszarze dotyczą natywnych funkcjonalności zarządzania profilami użytkowników (polecenia <code class="language-plaintext highlighter-rouge">Lista użytkowników</code> i <code class="language-plaintext highlighter-rouge">Drzewo listy użytkowników</code>) dostępnych we front-office oraz punktów końcowych API udostępniających funkcje związane z profilami użytkowników.</div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Przeglądanie listy użytkowników</code>: pozwala wyświetlić listę użytkowników przy użyciu polecenia <code class="language-plaintext highlighter-rouge">Lista użytkowników</code> w menu front-office.</li>
+  <li><code class="language-plaintext highlighter-rouge">Przeglądanie drzewa użytkowników</code>: pozwala wyświetlić drzewo listy użytkowników przy użyciu polecenia <code class="language-plaintext highlighter-rouge">Drzewo listy użytkowników</code> w menu front-office.</li>
+  <li><code class="language-plaintext highlighter-rouge">Tworzenie nowego użytkownika</code>: wyświetla przycisk <code class="language-plaintext highlighter-rouge">Dodaj użytkownika</code> na liście użytkowników; do wyświetlenia okna dialogowego <code class="language-plaintext highlighter-rouge">Dodanie profilu użytkownika</code> wymagane jest uprawnienie <code class="language-plaintext highlighter-rouge">Podgląd szczegółów dowolnego użytkownika</code>; posiadanie tylko tych dwóch uprawnień pozwala tworzyć nowe profile użytkownika bez przypisanej roli biznesowej i hasła; możliwe jest utworzenie profilu użytkownika bez hasła, ale na taki profil nie można się zalogować (do wykorzystania w scenariuszach, kiedy inna osoba tworzy profil, a inna nadaje hasło).</li>
+  <li><code class="language-plaintext highlighter-rouge">Zmiana ról biznesowych użytkownika</code>: pozwala zmieniać role biznesowe przypisane do profilu użytkownika; brak tego uprawnienia powoduje ukrycie odpowiedniej kontrolki na formularzu danych użytkownika.</li>
+  <li><code class="language-plaintext highlighter-rouge">Podgląd danych użytkowników</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Podgląd szczegółów dowolnego użytkownika</code>: uprawnienie wymagane do wysyłania zapytań API o dane użytkowników; pomocniczo wymagane przez uprawnienia <code class="language-plaintext highlighter-rouge">Tworzenie nowego użytkownika</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">Podgląd własnego profilu</code>: uprawnienie wymagane do wysyłania zapytań API o własne dane.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Edycja danych użytkowników</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Edycja profilu dowolnego użytkownika</code>: uprawnienie wymagane do modyfikowania danych w profilu użytkownika; użytkownik z tym uprawnieniem ma dostęp do przycisków <code class="language-plaintext highlighter-rouge">Edytuj</code> w ostatniej kolumnie z prawej strony na liście użytkowników.</li>
+      <li><code class="language-plaintext highlighter-rouge">Edycja własnego profilu</code>: uprawnienie wymagane do modyfikowania danych w swoim profilu użytkownika; użytkownik z tym uprawnieniem ma dostęp do przycisku <code class="language-plaintext highlighter-rouge">Edytuj</code> w ostatniej kolumnie z prawej strony na liście użytkowników w wierszu swojego profilu; dodatkowo użytkownik może zmieniać dane swojego profilu po kliknięciu w nazwę logowania i wybraniu polecenia <code class="language-plaintext highlighter-rouge">Mój profil</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Usuwanie użytkownika</code>: uprawnienie pomocnicze wymagane do uprawnienia <code class="language-plaintext highlighter-rouge">Import użytkowników z pliku Excel</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Zmiana hasła użytkowników</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Zmiana hasła dowolnego użytkownika</code>:  pozwala zmieniać hasło przypisane do profilu użytkownika; brak tego uprawnienia powoduje ukrycie odpowiedniej kontrolki na formularzu danych użytkownika; to uprawnienie wymaga uprawnienia <code class="language-plaintext highlighter-rouge">Edycja profilu dowolnego użytkownika</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">Zmiana własnego hasła</code>:  pozwala zmieniać hasło przypisane do własnego profilu użytkownika; brak tego uprawnienia powoduje ukrycie przycisku <code class="language-plaintext highlighter-rouge">Zmień hasło</code> w oknie dialogowym wyświetlanym po kliknięciu w nazwę logowania i wybraniu polecenia <code class="language-plaintext highlighter-rouge">Mój profil</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Dostęp do funkcji 'Pobierz przełożonych z AD'</code>: brak tego uprawnienia powoduje ukrycie przycisku <code class="language-plaintext highlighter-rouge">Pobierz przełożonych dla użytkowników AD</code> w nagłówku listy użytkowników.</li>
+  <li><code class="language-plaintext highlighter-rouge">Import użytkowników z pliku excel</code>: brak tego uprawnienia powoduje ukrycie przycisku <code class="language-plaintext highlighter-rouge">Importuj użytkowników z pliku Excel</code> w sekcji <code class="language-plaintext highlighter-rouge">Import użytkowników</code> w ustawieniach systemu w back-office (<code class="language-plaintext highlighter-rouge">ADMINISTRACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Ustawienia systemu</code>).
+    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> back-office jest dostępne tylko dla użytkowników z przypisaną rolą systemową <em>Konsultant</em>.</div>
+  </li>
+</ul>
+
+<h2>
+
+Uprawnienia w obszarze Globalne uprawnienia aplikacji
+
+</h2>
+<p><span id="pba-sys-app-list-pl"></span></p>
+
+<p><code class="language-plaintext highlighter-rouge">Globalne uprawnienia aplikacji</code> to obszar grupujący następujące uprawnienia do korzystania z aplikacji biznesowych i ich tworzenia:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Zarządzanie definicjami aplikacji</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Przeglądanie listy aplikacji</code>: uprawnia do wyświetlenia listy aplikacji zdefiniowanych w danym środowisku nAxiom (<code class="language-plaintext highlighter-rouge">ADMINISTRACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Lista aplikacji</code>); w razie braku uprawnienia wyświetlana jest informacja o braku dostępu do strony.</li>
+      <li><code class="language-plaintext highlighter-rouge">Tworzenie aplikacji</code>: udostępnia przycisk <code class="language-plaintext highlighter-rouge">Dodaj definicję</code> na liście definicji aplikacji; w razie braku uprawnienia przycisk jest niewidoczny.</li>
+      <li><code class="language-plaintext highlighter-rouge">Edycja aplikacji</code>: udostępnia ikonę do edycji 
+<img style="display:inline;" id="but-edit-light.png" src="/sample-docs/assets/images/manuals/but-edit-light.png" alt="/sample-docs/assets/images/manuals/but-edit-light.png" height=";" />
+ w wierszu definicji aplikacji; w razie braku uprawnienia ikona jest niewidoczna.</li>
+      <li><code class="language-plaintext highlighter-rouge">Usuwanie aplikacji</code>: udostępnia ikonę do usuwania 
+<img style="display:inline;" id="but-trash.png" src="/sample-docs/assets/images/manuals/but-trash.png" alt="/sample-docs/assets/images/manuals/but-trash.png" height=";" />
+ w wierszu definicji aplikacji; w razie braku uprawnienia ikona jest niewidoczna.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Używanie wszystkich aplikacji</code>: umożliwia korzystanie ze wszystkich aplikacji, to jest korzystanie z poleceń menu udostępniających formularze i listy, do których użytkownik ma dostęp w związku z przypisanymi mu rolami biznesowymi.</li>
+  <li><code class="language-plaintext highlighter-rouge">Filtry SQL list</code>: umożliwia definiowanie filtrów dla list jako zapytań SQL (<em>FrontSPA</em> &gt; <em>NazwaListy</em> &gt; Lista rozwijana wyboru filtra &gt; <code class="language-plaintext highlighter-rouge">Ustawienia</code> &gt; <code class="language-plaintext highlighter-rouge">Dodaj nowy filtr predefiniowany</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">Rozbudowa wszystkich aplikacji</code>: umożliwia korzystanie z back-office w roli użytkownika tworzącego aplikacje biznesowe (zwyczajowo nazywanego <em>konsultantem</em>), z wyjątkiem dostępu do funkcji chronionych uprawnieniami z grupy <code class="language-plaintext highlighter-rouge">Zarządzanie definicjami aplikacji</code>.</li>
+</ul>
+
+<blockquote class="alert alert-info">
+  <p><i class="fa fa-info-circle"> <strong>Note:</strong> modyfikowanie zmiennych środowiskowych aplikacji (<code class="language-plaintext highlighter-rouge">ADMINISTRACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Lista aplikacji</code> &gt; ikona 
+<img style="display:inline;" id="but-vars.png" src="/sample-docs/assets/images/manuals/but-vars.png" alt="/sample-docs/assets/images/manuals/but-vars.png" height=";" />
+) wymaga posiadania uprawnień: <code class="language-plaintext highlighter-rouge">Przeglądanie listy aplikacji</code> oraz <code class="language-plaintext highlighter-rouge">Rozbudowa wszystkich aplikacji</code>.</i></p>
+</blockquote>
+
+:ET

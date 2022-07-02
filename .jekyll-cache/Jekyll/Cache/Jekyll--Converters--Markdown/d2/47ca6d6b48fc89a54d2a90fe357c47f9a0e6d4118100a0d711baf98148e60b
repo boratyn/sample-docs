@@ -1,0 +1,7 @@
+I"<p>Ustawienia dostępne w tej sekcji:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Zbiór akcji wywoływanych po kliknięciu w przycisk pomocy w formularzach</code>: wybierz odpowiednie akcje; wśród nich musi znajdować się akcja otwierania formularza.</li>
+  <li><code class="language-plaintext highlighter-rouge">Zbiór akcji wywoływanych po kliknięciu w przycisk pomocy w listach</code>:  wybierz odpowiednie akcje; wśród nich musi znajdować się akcja otwierania formularza.</li>
+</ul>
+:ET

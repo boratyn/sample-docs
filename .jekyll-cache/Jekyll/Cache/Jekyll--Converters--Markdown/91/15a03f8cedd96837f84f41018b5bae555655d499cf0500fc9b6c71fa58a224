@@ -1,0 +1,35 @@
+I"�<p>W celu zainicjowania modelu PBA należy skorzystać z predefiniowanego profilu użytkownika <em>superuser</em> (domyślne hasło <em>!Q2w3e4r%T</em>). Ten profil odgrywa rolę <em>superadministratora uprawnień</em>, to znaczy może wyznaczać użytkowników (w tym siebie) jako administratorów uprawnień. Temu użytkownikowi nie można odebrać uprawnień do administracji uprawnieniami.</p>
+
+<p>W szkicowaniu scenariuszy inicjowania modelu uprawnień PBA można wyróżnić dwa podstawowe przypadki:</p>
+
+<ul>
+  <li>środowisko nAxiom z pustą bazą danych, tj. brak profili użytkowników innych niż systemowe</li>
+  <li>środowisko nAxiom z bazą danych zawierającą profile użytkowników i role biznesowe</li>
+</ul>
+
+<p>Pierwszy przypadek jest bardziej złożony, dlatego zostanie opisany poniżej. W drugim przypadku wystarczy pominąć kroki związane z definiowaniem ról użytkownika i profili użytkowników.</p>
+
+<div class="alert alert-warning" role="alert"><i class="fa fa-warning"></i> <b>Important:</b> Uprawnienia PBA są weryfikowane podczas logowania użytkownika, dlatego każda zmiana uprawnień zalogowanego użytkownika zacznie obowiązywać dopiero po jego wylogowaniu i ponownym zalogowaniu.</div>
+
+<ol>
+  <li>Użytkownik <em>superuser</em> wyznacza użytkownika <em>admin</em> jako administratora uprawnień w obszarach <em>Zarządzanie użytkownikami</em> oraz <em>Globalne uprawnienia aplikacji</em>. Alternatywnie, <em>superuser</em> może wyznaczyć siebie jako administratora uprawnień w obu obszarach.</li>
+  <li>Użytkownik <em>admin</em> przyznaje użytkownikowi <em>consultant</em> komplet uprawnień z obszaru <em>Globalne uprawnienia aplikacji</em></li>
+  <li>Użytkownik <em>consultant</em> loguje się do back-office, gdzie definiuje co najmniej jedną aplikację i zestaw ról biznesowych; ewentualnie może być konieczne włączenie dla określonych ról biznesowych systemowych pozycji menu front-office, np. <code class="language-plaintext highlighter-rouge">Użytkownicy</code>, <code class="language-plaintext highlighter-rouge">Uprawnienia</code> itp.</li>
+  <li>Użytkownik <em>admin</em> loguje się do front-office i definiuje profile użytkowników.</li>
+  <li>W razie potrzeby <em>superuser</em> może wyznaczyć kolejnych administartorów uprawnień w obu obszarach.</li>
+  <li>Administratorzy uprawnień przypisują rolom biznesowym i użytkownikom role z obszarów uprawnień.</li>
+</ol>
+
+<blockquote class="bs-callout bs-callout-warning">
+  <p><strong>Zapamiętaj:</strong></p>
+  <ul>
+    <li>Bez uprawnienia <code class="language-plaintext highlighter-rouge">Używanie wszystkich aplikacji</code> (<code class="language-plaintext highlighter-rouge">Uprawnienia systemowe</code> &gt; <code class="language-plaintext highlighter-rouge">Globalne uprawnienia aplikacji</code>) inne posiadane przez niego uprawnienia będą nieskuteczne, z wyjątkiem uprawnienia <code class="language-plaintext highlighter-rouge">Zmiana własnego hasła</code>.</li>
+    <li>Niezależnie od uprawnień PBA, użytkownikom, którzy mają zarządzać profilami użytkowników, należy przypisać rolę biznesową z dostępem do polecenia <code class="language-plaintext highlighter-rouge">Lista użytkowników</code> (ewentualnie <code class="language-plaintext highlighter-rouge">Drzewo listy użytkowników</code>.</li>
+    <li>Analogicznie, administratorzy uprawnień będą mieli dostęp do obszarów uprawnień po przypisaniu im ról biznesowych z włączonym dostępem do menu <code class="language-plaintext highlighter-rouge">Zarządzanie uprawnieniami</code> &gt; <code class="language-plaintext highlighter-rouge">Systemowe</code>; domyślnie to menu jest dostępne tylko dla posiadaczy roli systemowej <code class="language-plaintext highlighter-rouge">Administrator</code>.</li>
+    <li>Czynności związane z tworzeniem i edytowaniem profili użytkownika są dostępne tylko dla użytkowników z przypisaną rolą systemową <em>Administrator</em>.</li>
+    <li>Dostęp do back-office (zarządzanie definicjami aplikacji, rozbudowa aplikacji) wymaga posiadania roli <em>Konsultant</em></li>
+    <li>Jeśli podczas instalowania witryny nie zostanie wskazana licencja, użytkownik systemowy <em>consultant</em> ma uprawnienia do zaimportowania licencji podczas pierwszego uruchomienia. Dopiero wtedy można będzie zalogować się na konto <em>superuser</em> i zarządzać uprawnieniami.</li>
+    <li>Użytkownik <em>superuser</em> ma na stałe przypisane uprawnienie do wyznaczania administratorów uprawnień (pole wyboru <code class="language-plaintext highlighter-rouge">Dostęp do administracji uprawnieniami</code>) i nie można tego zmienić. Po zainicjowaniu uprawnień PBA ten profil można dezaktywować.</li>
+  </ul>
+</blockquote>
+:ET

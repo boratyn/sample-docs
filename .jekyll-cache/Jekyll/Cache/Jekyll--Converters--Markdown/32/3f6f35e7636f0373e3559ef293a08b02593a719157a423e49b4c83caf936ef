@@ -1,0 +1,35 @@
+I"�<p><code class="language-plaintext highlighter-rouge">Zarządzanie użytkownikami</code> to obszar grupujący uprawnienia do zarządzania profilami użytkowników; uprawnienia z tego obszaru mają zastosowanie tylko do użytkowników, którzy mają dostęp do poleceń <code class="language-plaintext highlighter-rouge">Lista użytkowników</code> i/lub <code class="language-plaintext highlighter-rouge">Drzewo listy użytkowników</code> we front-office (back-office: <code class="language-plaintext highlighter-rouge">ADMINISTRACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Role biznesowe</code> &gt; <code class="language-plaintext highlighter-rouge">Uprawnienia</code> &gt; <code class="language-plaintext highlighter-rouge">Użytkownicy</code> / <code class="language-plaintext highlighter-rouge">Lista użytkowników</code> / <code class="language-plaintext highlighter-rouge">Drzewo listy użytkowników</code>); obszar obejmuje następujące uprawnienia i grupy uprawnień:</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> uprawnienia w tym obszarze dotyczą natywnych funkcjonalności zarządzania profilami użytkowników (polecenia <code class="language-plaintext highlighter-rouge">Lista użytkowników</code> i <code class="language-plaintext highlighter-rouge">Drzewo listy użytkowników</code>) dostępnych we front-office oraz punktów końcowych API udostępniających funkcje związane z profilami użytkowników.</div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Przeglądanie listy użytkowników</code>: pozwala wyświetlić listę użytkowników przy użyciu polecenia <code class="language-plaintext highlighter-rouge">Lista użytkowników</code> w menu front-office.</li>
+  <li><code class="language-plaintext highlighter-rouge">Przeglądanie drzewa użytkowników</code>: pozwala wyświetlić drzewo listy użytkowników przy użyciu polecenia <code class="language-plaintext highlighter-rouge">Drzewo listy użytkowników</code> w menu front-office.</li>
+  <li><code class="language-plaintext highlighter-rouge">Tworzenie nowego użytkownika</code>: wyświetla przycisk <code class="language-plaintext highlighter-rouge">Dodaj użytkownika</code> na liście użytkowników; do wyświetlenia okna dialogowego <code class="language-plaintext highlighter-rouge">Dodanie profilu użytkownika</code> wymagane jest uprawnienie <code class="language-plaintext highlighter-rouge">Podgląd szczegółów dowolnego użytkownika</code>; posiadanie tylko tych dwóch uprawnień pozwala tworzyć nowe profile użytkownika bez przypisanej roli biznesowej i hasła; możliwe jest utworzenie profilu użytkownika bez hasła, ale na taki profil nie można się zalogować (do wykorzystania w scenariuszach, kiedy inna osoba tworzy profil, a inna nadaje hasło).</li>
+  <li><code class="language-plaintext highlighter-rouge">Zmiana ról biznesowych użytkownika</code>: pozwala zmieniać role biznesowe przypisane do profilu użytkownika; brak tego uprawnienia powoduje ukrycie odpowiedniej kontrolki na formularzu danych użytkownika.</li>
+  <li><code class="language-plaintext highlighter-rouge">Podgląd danych użytkowników</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Podgląd szczegółów dowolnego użytkownika</code>: uprawnienie wymagane do wysyłania zapytań API o dane użytkowników; pomocniczo wymagane przez uprawnienia <code class="language-plaintext highlighter-rouge">Tworzenie nowego użytkownika</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">Podgląd własnego profilu</code>: uprawnienie wymagane do wysyłania zapytań API o własne dane.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Edycja danych użytkowników</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Edycja profilu dowolnego użytkownika</code>: uprawnienie wymagane do modyfikowania danych w profilu użytkownika; użytkownik z tym uprawnieniem ma dostęp do przycisków <code class="language-plaintext highlighter-rouge">Edytuj</code> w ostatniej kolumnie z prawej strony na liście użytkowników.</li>
+      <li><code class="language-plaintext highlighter-rouge">Edycja własnego profilu</code>: uprawnienie wymagane do modyfikowania danych w swoim profilu użytkownika; użytkownik z tym uprawnieniem ma dostęp do przycisku <code class="language-plaintext highlighter-rouge">Edytuj</code> w ostatniej kolumnie z prawej strony na liście użytkowników w wierszu swojego profilu; dodatkowo użytkownik może zmieniać dane swojego profilu po kliknięciu w nazwę logowania i wybraniu polecenia <code class="language-plaintext highlighter-rouge">Mój profil</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Usuwanie użytkownika</code>: uprawnienie pomocnicze wymagane do uprawnienia <code class="language-plaintext highlighter-rouge">Import użytkowników z pliku Excel</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Zmiana hasła użytkowników</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Zmiana hasła dowolnego użytkownika</code>:  pozwala zmieniać hasło przypisane do profilu użytkownika; brak tego uprawnienia powoduje ukrycie odpowiedniej kontrolki na formularzu danych użytkownika; to uprawnienie wymaga uprawnienia <code class="language-plaintext highlighter-rouge">Edycja profilu dowolnego użytkownika</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">Zmiana własnego hasła</code>:  pozwala zmieniać hasło przypisane do własnego profilu użytkownika; brak tego uprawnienia powoduje ukrycie przycisku <code class="language-plaintext highlighter-rouge">Zmień hasło</code> w oknie dialogowym wyświetlanym po kliknięciu w nazwę logowania i wybraniu polecenia <code class="language-plaintext highlighter-rouge">Mój profil</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Dostęp do funkcji 'Pobierz przełożonych z AD'</code>: brak tego uprawnienia powoduje ukrycie przycisku <code class="language-plaintext highlighter-rouge">Pobierz przełożonych dla użytkowników AD</code> w nagłówku listy użytkowników.</li>
+  <li><code class="language-plaintext highlighter-rouge">Import użytkowników z pliku excel</code>: brak tego uprawnienia powoduje ukrycie przycisku <code class="language-plaintext highlighter-rouge">Importuj użytkowników z pliku Excel</code> w sekcji <code class="language-plaintext highlighter-rouge">Import użytkowników</code> w ustawieniach systemu w back-office (<code class="language-plaintext highlighter-rouge">ADMINISTRACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Ustawienia systemu</code>).
+    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> back-office jest dostępne tylko dla użytkowników z przypisaną rolą systemową <em>Konsultant</em>.</div>
+  </li>
+</ul>
+
+:ET

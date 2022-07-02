@@ -1,0 +1,8 @@
+I"R<p>Po kliknięciu polecenia <code class="language-plaintext highlighter-rouge">Administracja</code> w sekcji <code class="language-plaintext highlighter-rouge">ZARZĄDZANIE UPRAWNIENIAMI</code> i wybraniu roli biznesowej lub użytkownika zostają wyświetlone pola wyboru uprawnień administracyjnych:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Dostęp do administracji uprawnieniami</code>: uprawnienie do wyznaczania innych superadministratorów uprawnień oraz administratorów w obszarach uprawnień.</li>
+  <li><code class="language-plaintext highlighter-rouge">Dostęp do administracji uprawnieniami systemowymi 'Zarządzanie użytkownikami'</code>: uprawnienie do nadawania/odbierania użytkownikom i rolom biznesowym uprawnień w obszarze <em>Zarządzanie użytkownikami</em>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Dostęp do administracji uprawnieniami systemowymi 'Globalne uprawnienia aplikacji'</code>: uprawnienie do nadawania/odbierania użytkownikom i rolom biznesowym uprawnień w obszarze <em>Globalne uprawnienia aplikacji</em>.</li>
+</ul>
+:ET

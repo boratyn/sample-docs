@@ -1,0 +1,44 @@
+{% comment %}
+{% include insert_topic.html
+    topic-id="/topics/pba-intro-pl"
+    abstract=true
+    uipath=true
+    relatedtopics=true %}
+    h-level="h2" %}
+    titletype="none/main/alt/both" %}
+{% endcomment %}
+
+{% capture conref %}{{ include.topic-id }}{% endcapture %}
+{% assign topic = site.topics | where:"id", conref  | first %}
+
+<{{include.h-level}}>
+{% if include.titletype == "main" %}
+{{ topic.title }}
+{% elsif include.titletype == "alt" %}
+{{ topic.alt-title }}
+{% elsif include.titletype == "both" %}
+{{ topic.title }} — {{ topic.alt-title }}
+{% endif %}
+</{{include.h-level}}>
+<span id="{{ include.topic-id | remove: '/topics/' }}"></span>
+{% if include.abstract %}
+<div markdown="span" class="bs-callout bs-callout-primary"> <b>Abstract:</b> {{ topic.abstract | liquify }}</div>
+{% endif %}
+
+{% if include.uipath %}
+<div markdown="span" class="bs-callout bs-callout-default"> <b>Path:</b> {{ topic.uipath | liquify }}</div>
+{% endif %}
+
+{{ topic.content | liquify }}
+
+{% if include.relatedtopics %}
+
+<div class="bs-callout bs-callout-info"> <b>Related topics:</b>
+<ul>
+{%- for item in topic.relatedtopics -%}
+{% assign reltopic = site.topics | where:"id", item  | first %}
+  <li><a href="{{ reltopic.url | relative_url }}">{{ reltopic.title }}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}

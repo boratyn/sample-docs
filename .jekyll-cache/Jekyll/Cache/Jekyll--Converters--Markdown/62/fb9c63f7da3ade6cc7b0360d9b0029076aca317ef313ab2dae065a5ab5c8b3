@@ -1,0 +1,259 @@
+I"�W<p class="pdf"><a href="/sample-docs/downloads/informacje-o-wersji-1.5.pdf" title="Pobierz PDF"><img src="/sample-docs/assets/PDF_32.png" alt="PDF" /></a></p>
+
+<h1 class="no_toc pdf" id="informacje-o-wersji-15-z-dn-21-12-2021">Informacje o wersji 1.5 z dn. 21-12-2021</h1>
+
+<h2 id="nowe-funkcje">Nowe funkcje</h2>
+
+<h5 id="np-3427">Sekcja typu Kalendarz</h5>
+
+<p>Dodano nowy typ sekcji: <code class="language-plaintext highlighter-rouge">Kalendarz</code>. Korzystając z tej sekcji, można wyświetlać na formularzu dane w jednym z kilku widoków kalendarza: miesięcznym, tygodniowym, dziennym i osi czasu. Dane wyświetlane w kalendarzu mogą pochodzić z dowolnej tabeli, a zapytanie SQL do tej tabeli musi zwrócić pięć kolumn: <em>[id]</em>, <em>[start]</em> (data i godzina rozpoczęcia), <em>[end]</em> (data i godzina zakończenia), <em>[title]</em> (opis zdarzenia wyświetlany w kalendarzu) oraz <em>[isAllDay]</em> (flaga bitowa dla zdarzeń trwających cały dzień).</p>
+
+<p>Dla kalendarza konieczne jest także wskazanie formularza do edycji zdarzeń oraz akcji aktualizacji i usuwania zdarzeń do obsługi zdarzeń kalendarza przy użyciu myszy. <em>(T:0514)</em></p>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="np-3427-1.png" src="/sample-docs/assets/images/releasenotes/np-3427-1.png" alt="Kalendarz, widok osi czasu z grupowaniem zdarzeń" title="np-3427-1.png" width="" height="" />
+   <figcaption> Kalendarz, widok osi czasu z grupowaniem zdarzeń </figcaption></figure>
+
+<blockquote>
+  <p><strong>Uwaga:</strong> Opis konfiguracji sekcji typu kalendarz załączono do niniejszych informacji o wersji jako <a href="#calendar">dodatek</a>. W kolejnej wersji będzie on dostępny w nAxiom jako pomoc kontekstowa do panelu właściwości sekcji.</p>
+</blockquote>
+
+<h5 id="np-3338">Słowniki hierarchiczne</h5>
+
+<p>Dodano nowy rodzaj słownika — słownik hierarchiczny — który umożliwia tworzenie słowników o strukturze wielopoziomowego drzewa. W celu umożliwienia korzystania z tej funkcjonalności dodano nową kontrolkę formularza <code class="language-plaintext highlighter-rouge">Lista wyboru (Słownik hierarchiczny)</code>.</p>
+
+<p>Definicja słowników hierarchicznych wymaga określenia opcji dotyczących unikalności wpisów do słownika. Warunki unikalności są walidowane według wartości z kolumny systemowej <code class="language-plaintext highlighter-rouge">Kod</code> słownika. <em>(T:0054)</em></p>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="np-3338-1.png" src="/sample-docs/assets/images/releasenotes/np-3338-1.png" alt="" title="np-3338-1.png" width="" height="" />
+   <figcaption>  </figcaption></figure>
+
+<blockquote>
+  <p><strong>Uwaga:</strong> ze względu na kontynuowane prace programistyczne ta funkcjonalność ma charakter eksperymentalny, jednak nie jest ona objęta działaniem przełącznika <code class="language-plaintext highlighter-rouge">Pokaż funkcje eksperymentalne</code> w ustawieniach nAxiom.</p>
+</blockquote>
+
+<h5 id="np-3991">Automatyczne wyświetlanie dokumentu podprocesu</h5>
+
+<p>Dodano możliwość zautomatyzowania wyświetlania formularza dokumentu tworzonego w podprocesie z formularza procesu głównego. W ustawieniach bloku <code class="language-plaintext highlighter-rouge">Podproces synchroniczny</code> dodano przełącznik <code class="language-plaintext highlighter-rouge">Przekieruj do formularza podprocesu po zainicjowaniu podprocesu</code>. Jego włączenie powoduje wyświetlenie listy rozwijanej <code class="language-plaintext highlighter-rouge">Akcja otwarcia formularza</code>, z której należy wybrać odpowiednią akcję. W konfiguracji akcji należy użyć opcji <code class="language-plaintext highlighter-rouge">wskazany dokument</code> i wpisać <em>{@Id}</em> w pole obok tej opcji. Jeśli w tej akcji będą przekazywane jakieś wartości do formularza, zostaną one zignorowane. <em>(T:0728)</em></p>
+
+<h5 id="np-3846">Dostęp do pól sekcji niewidocznej</h5>
+
+<p>W oknie <code class="language-plaintext highlighter-rouge">Ustawienia dostępności...</code> dla sekcji formularza dodano przełącznik <code class="language-plaintext highlighter-rouge">Pole dostępne w przeglądarce, nawet gdy niewidoczne</code>, którego włączenie umożliwia wykonywanie operacji na wartościach pól w sekcji niewidocznej na formularzu. W przypadku aktualizacji aplikacji do bieżącej wersji, przełącznik jest wyłączony, dla nowo tworzonych sekcji przełącznik jest domyślnie włączony</p>
+
+<p>Ponadto dodano funkcję <strong><em>setSectionAsHidden(</em>kod-sekcji<em>)</em></strong>, której można używać w akcjach JavaScript do ukrywania sekcji z zachowaniem możliwości dostępu do kontrolek w tej sekcji. <em>(T:0684)</em></p>
+
+<h5 id="np-3762">Przyciski w nagłówku sekcji</h5>
+
+<p>Dodano możliwość umieszczania przycisków w nagłówku sekcji formularza. Dodano również powiązane ustawienia we właściwościach sekcji: <code class="language-plaintext highlighter-rouge">Wyrównanie przycisków w nagłówku sekcji</code> (do lewej, wyśrodkuj i do prawej) oraz <code class="language-plaintext highlighter-rouge">Kolejność elementów w nagłówku sekcji</code> (<code class="language-plaintext highlighter-rouge">Najpierw etykieta</code> albo <code class="language-plaintext highlighter-rouge">Najpierw przyciski</code>). <em>(T:0157)</em></p>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="np-3762-1.png" src="/sample-docs/assets/images/releasenotes/np-3762-1.png" alt="" title="np-3762-1.png" width="" height="" />
+   <figcaption>  </figcaption></figure>
+
+<h5 id="np-3695">Edycja inline — wartości domyślne</h5>
+
+<p>Dodano funkcję ustawiania wartości domyślnej dla pól w widoku listy po włączeniu edycji inline. Podobnie jak w przypadku pól formularzy, wartość domyślna pól widoku listy może być określona przez podanie stałej wartości lub zwrócona zapytaniem SQL. <em>(T:0626)</em></p>
+
+<h5 id="np-2913">Styl przycisku</h5>
+
+<p>Dodano właściwości określające wygląd przycisków na formularzach, zarówno przycisków akcji, jak i przycisków workflow oraz w widokach listy. Obecnie można zdefiniować:</p>
+<ul>
+  <li>kolor czcionki i ikony na przycisku (taki sam)</li>
+  <li>kolor wypełnienia przycisku</li>
+  <li>kolor obramowania przycisku</li>
+  <li>grubość obramowania przycisku (od 0 do 5 px)</li>
+</ul>
+
+<p>Ponadto dodano efekt wyróżnienia przycisku po wskazaniu kursorem myszy przez zamianę kolorów czcionki i wypełnienia.</p>
+
+<h5 id="np-3948">Eksport do szablonu Excel</h5>
+
+<p>W akcji eksportu do formatu Excel dodano możliwość dopisywania eksportowanych danych do istniejącego pliku — <em>szablonu Excel</em>. W takim wypadku należy określić, oprócz nazwy pliku szablonu i arkusza, adres lewej, górnej komórki zakresu danych. Akcja dopisze wyeksportowane dane we wskazanym pliku i zapisze go pod podaną nazwą w folderze pobierania lub wyświetli w programie Excel, zależnie od ustawień przeglądarki.</p>
+
+<blockquote>
+  <p><strong>Uwaga:</strong> Jeśli szablon zawiera kolumny ukryte, akcje wpisze dane również w tych kolumnach.</p>
+</blockquote>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="np-3948-1.png" src="/sample-docs/assets/images/releasenotes/np-3948-1.png" alt="" title="np-3948-1.png" width="" height="" />
+   <figcaption>  </figcaption></figure>
+
+<p>Aby dopisywanie eksportowanych danych do istniejącego pliku działało, po wyzwoleniu akcji w aplikacji FrontSPA użytkownik <strong>musi</strong> wybrać format <em>xlsx</em>, w przeciwnym razie dane zostaną wyeksportowane do nowego pliku w formacie CSV.</p>
+
+<p>W związku z tą modyfikacją dodano menu <code class="language-plaintext highlighter-rouge">Szablony Excel</code> do sekcji <code class="language-plaintext highlighter-rouge">APLIKACJA</code>. Służy ono do załączania plików Excel, które będą dostępne w akcji eksportu Excel. Dodawanie szablonów wymaga wskazania folderu ich przechowywania. Służy do tego nowe ustawienie <code class="language-plaintext highlighter-rouge">Miejsce zapisu na dysku szablonów Excel</code> (<code class="language-plaintext highlighter-rouge">SYSTEM</code> &gt; <code class="language-plaintext highlighter-rouge">Ustawienia</code> &gt; <code class="language-plaintext highlighter-rouge">Szablony plików</code>). Nowa sekcja <code class="language-plaintext highlighter-rouge">Szablony plików</code> w ustawieniach zawiera także dotychczasowe ustawienie <code class="language-plaintext highlighter-rouge">Miejsce zapisu na dysku szablonów Word</code>. <em>(T:0709)</em></p>
+
+<h5 id="np-3882">Transakcyjne przetwarzanie akcji</h5>
+
+<p>Dodano transakcyjne przetwarzanie sekwencji akcji. Takie sekwencje mogą obejmować:</p>
+
+<ul>
+  <li>Akcję systemową <code class="language-plaintext highlighter-rouge">Zapisz rekord</code></li>
+  <li>Akcje SQL</li>
+  <li>Procedury</li>
+</ul>
+
+<p>Jeśli w sekwencji wystąpi akcja innego rodzaju, sekwencja zostanie podzielona na kilka transakcji.<br />
+W przypadku wystąpienia błędu w akcji wykonywanej w ramach transakcji, zmiany dokonane przez wszystkie wcześniejsze akcje, w tym przez akcję <code class="language-plaintext highlighter-rouge">Zapisz rekord</code>, zostaną wycofane.</p>
+
+<blockquote>
+  <p><strong>Uwaga:</strong> przetwarzanie transakcyjne nie obsługuje akcji zapisu (<code class="language-plaintext highlighter-rouge">APLIKACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Akcje</code> &gt; <code class="language-plaintext highlighter-rouge">Akcje zapisu</code>); obsługa tych akcji jest planowana w kolejnych wersjach.</p>
+</blockquote>
+
+<p><em>(T:0692)</em></p>
+
+<h5 id="np-4026">Wysyłka e-mail — pole DW i UDW</h5>
+
+<p>Zmodyfikowano działanie akcji wysyłki e-mail w taki sposób, że obecnie można wybrać, czy wiadomość ma zostać wysłana osobno do każdego adresata określonego w polu <code class="language-plaintext highlighter-rouge">Wyślij do</code>. Ponadto dodano możliwość określenia adresatów w polach  <code class="language-plaintext highlighter-rouge">Do wiadomości</code> i <code class="language-plaintext highlighter-rouge">Ukryte do wiadomości</code>. <em>(T:0752)</em></p>
+
+<blockquote>
+  <p><strong>Uwaga:</strong> w przypadku włączenia opcji osobnego wysyłania wiadomości i określenia adresatów w polach <code class="language-plaintext highlighter-rouge">Do wiadomości</code> i <code class="language-plaintext highlighter-rouge">Ukryte do wiadomości</code>, każdy adresat określony w tych polach otrzyma tyle kopii wiadomości, ilu jest adresatów w polu <code class="language-plaintext highlighter-rouge">Wyślij do</code>.</p>
+</blockquote>
+
+<h5 id="np-3876">Modyfikacja API — pobieranie i zapisywanie danych użytkownika</h5>
+
+<p>Zdefiniowano osobne punkty końcowe API dla żądań pobierania i zapisywania danych użytkownika:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">UserProfiles/GetById</code>: pobieranie danych użytkownika z listy użytkowników; dostępny tylko dla administratora.</li>
+  <li><code class="language-plaintext highlighter-rouge">UserProfiles/SaveUser</code>: zapis danych użytkownika na liście użytkowników; dostępny tylko dla administratora.</li>
+  <li><code class="language-plaintext highlighter-rouge">UserProfiles/Get</code>: pobieranie danych zalogowanego użytkownika; dostępny dla każdego zalogowanego użytkownika.</li>
+  <li><code class="language-plaintext highlighter-rouge">UserProfiles/Save</code>: zapis danych zalogowanego użytkownika; dostępny dla każdego zalogowanego użytkownika.</li>
+</ul>
+
+<h5 id="np-3873">Modyfikacja API — weryfikacja użytkownika</h5>
+
+<p>W punktach końcowych API dodano weryfikację roli systemowej użytkownika wysyłającego żądanie.</p>
+
+<h5 id="np-3664">Akcje systemowe na workflow</h5>
+
+<p>W edytorze workflow dodano możliwość użycia akcji systemowych w ustawieniach <code class="language-plaintext highlighter-rouge">Akcje uruchamiane przed</code> i <code class="language-plaintext highlighter-rouge">Akcje uruchamiane po</code>. <em>(T:0606)</em></p>
+
+<h2 id="poprawki-i-usunięte-błędy">Poprawki i usunięte błędy</h2>
+
+<h5 id="np-4086">PublicAPI — kategorie załączników</h5>
+
+<p>Zmodyfikowano obsługę załączników w interfejsie Public API. Obecnie parametr <em>attachmentCategoryId</em> może mieć wartość <em>NULL</em>. W takiej sytuacji załącznikowi zostanie przypisana kategoria domyślna według definicji dokumentu biznesowego. <em>(T:0781)</em></p>
+
+<h5 id="np-3936">Widok listy — zachowywanie ustawień</h5>
+
+<p>Ustawienia grupowania, filtrowania i sortowania określone przez użytkownika są obecnie zapamiętywane przez nAxiom na czas trwania sesji użytkownika. Do tej pory były one resetowane zawsze po wyjściu z widoku listy do innego widoku lub formularza. <em>(T:0703)</em></p>
+
+<h5 id="np-4073">Pola zależne od listy wyboru</h5>
+
+<p>Zmieniono działanie zależności pól formularza od kolumn listy rozwijanej definiowanych w oknie dialogowym <code class="language-plaintext highlighter-rouge">Konfiguracja listy wyboru</code> w taki sposób, że obecnie można wybierać zależne pola z całego formularza. Do tej pory dostępne były tylko pola z bieżącego wiersza formularza. <em>(T:0772)</em></p>
+
+<p>Poprawiono działanie zależności pól formularza od kolumn listy rozwijanej typu <em>uniqueidentifier</em>. <em>(T:0532)</em></p>
+
+<h5 id="np-3838">Lista asynchroniczna</h5>
+
+<p>W oknie dialogowym <code class="language-plaintext highlighter-rouge">Konfiguracja listy wyboru</code> dla kontrolki <em>Lista wyboru (SQL - Async)</em> dodano informację, że wartość kolumny <em>[key]</em> zwracana przez zapytanie źródłowe dla listy musi być typu tekstowego. <em>(T:0674)</em></p>
+
+<h5 id="np-3966">Pole numeryczne</h5>
+
+<p>Zablokowano możliwość zmiany przy użyciu kółka myszy wartości w polu numerycznym, kiedy strzałki do zmiany wartości (<em>spinner</em>) są wyłączone. <em>(T:0715)</em></p>
+
+<h5 id="np-3802">Przekierowywanie użytkownika w aplikacji FrontSPA</h5>
+
+<p>Wprowadzono zmianę w aplikacji <em>FrontSPA</em>, która powoduje, że obecnie po zamknięciu formularza użytkownik jest przekierowywany do obiektu, z poziomu którego ten formularz został otwarty. W szczególności, po otwarciu formularza z widoku listy, a następnie zamknięciu tego formularza, wyświetlany jest ponownie widok listy.</p>
+
+<h5 id="np-4120">Nieaktualne wpisy w <em>OpenedForms</em></h5>
+
+<p>Usunięto błąd, który powodował że pomimo zamknięcia formularza wyświetlonego w trybie okna dialogowego, w tabeli <em>OpenedForms</em> pozostawały wpisy dotyczące tego formularza.</p>
+
+<h5 id="np-4087">Zapytania do <em>Linked Servers</em></h5>
+
+<p>Usunięto problem z zapisem formularza w przypadku użycia w definicji kontrolek zapytań SQL kierowanych do serwerów połączonych (<em>Linked Servers</em>). <em>(T:0782)</em></p>
+
+<h5 id="np-4049">Załączniki w formacie <em>docx</em></h5>
+
+<p>Usunięto błąd, który uniemożliwiał pobieranie załączników w formacie <em>docx</em>. <em>(T:0762)</em></p>
+
+<h5 id="np-4045">Przycisk eksportu do Excel</h5>
+
+<p>Usunięto błąd, który powodował, że nie można było wyłączyć wyświetlania przycisku eksportu w formacie Excel w widoku listy. <em>(T:0761)</em></p>
+
+<h5 id="np-4024">Ustawienia dostępności przycisków</h5>
+
+<p>Usunięto błąd powodujący problemy z wyświetlaniem przycisku, dla którego skonfigurowano ustawienia dostępności za pomocą zapytania SQL. <em>(T:0750)</em></p>
+
+<h5 id="np-4023">Przenoszenie przycisku między sekcjami</h5>
+
+<p>Usunięto błąd, który powodował, że po przeniesieniu przycisku z jednej sekcji do innej, podczas zapisu formularza był wyświetlany komunikat <em>„The instance of entity type ‘FormFieldParameter’ cannot be tracked because another instance with the same key value for {‘Id’} is already being tracked…”</em>.</p>
+
+<h5 id="np-4022">Mapowanie <em>NULL</em> do podprocesów</h5>
+
+<p>Usunięto błędy w mapowaniu wartości <em>NULL</em> do podprocesów dla wszystkich obsługiwanych typów danych. Obecnie taka wartość jest mapowana do podprocesu jako  <em>NULL</em>. <em>(T:0748)</em></p>
+
+<h5 id="np-4021">Odświeżanie formularza</h5>
+
+<p>Poprawiono błąd, który powodował, że odświeżenie formularza z danymi zapisanego dokumentu biznesowego wyświetlanego w trybie okna dialogowego, powodowało wyczyszczenie wartości z pól tego formularza. <em>(T:0745)</em> 
+    Usunięto błąd akcji <code class="language-plaintext highlighter-rouge">Odśwież formularz</code>, który mógł powodować, że mimo włączenia atrybutu widoczności po wykonaniu akcji przycisk w nagłówku formularza nie wyświetlał się. <em>(T:0738)</em></p>
+
+<h5 id="np-4019">Błąd trybu tylko do odczytu dla listy rozwijanej</h5>
+
+<p>Usunięto błąd w działaniu kontrolki typu lista rozwijana, który mógł powodować, że była ona wyświetlana w trybie tylko do odczytu, chociaż jej atrybut <em>isReadOnly</em> nie był nigdzie modyfikowany. <em>(T:0746)</em></p>
+
+<h5 id="np-4011">Nieaktualne wpisy w kontekście formularza</h5>
+
+<p>Poprawiono błąd, który powodował, że pomimo wyłączenia zaznaczenia pozycji w sekcji typu lista, wartości dla tych pozycji nadal były przechowywane w kontekście formularza. <em>(T:0735)</em></p>
+
+<h5 id="np-3984">Dublowanie filtrów na liście</h5>
+
+<p>Poprawiono błąd, który powodował dublowanie zapisanych filtrów na liście <code class="language-plaintext highlighter-rouge">Filtry</code> w widoku listy.</p>
+
+<h5 id="np-3981">Edycja inline — <em>datepicker</em></h5>
+
+<p>Poprawiono błąd w działaniu kontrolki <em>datepicker</em> w trybie edycji inline.</p>
+
+<h5 id="np-3978">Akcja <code class="language-plaintext highlighter-rouge">Otwórz formularz</code> na workflow</h5>
+
+<p>Poprawiono błędne działanie przekazywania do formularza wartości określonych w akcji <code class="language-plaintext highlighter-rouge">Otwórz formularz</code>. Problem dotyczył sytuacji, kiedy ta akcja była używana we właściwościach bloku workflow <code class="language-plaintext highlighter-rouge">Akcje uruchamiane przed</code> i <code class="language-plaintext highlighter-rouge">Akcje uruchamiane po</code>. <em>(T:0717)</em></p>
+
+<h5 id="np-3959">Konfiguracja edycji inline</h5>
+
+<p>Usunięto błąd, który mógł w określonych okolicznościach powodować usuwanie akcji zapisu z konfiguracji edycji inline dla widoku listy.</p>
+
+<h5 id="np-3900">PublicAPI — załączniki</h5>
+
+<p>Usunięto błędy w metodach API dotyczących załączników.</p>
+
+<h2 id="informacje-uzupełniające-i-sprostowania">Informacje uzupełniające i sprostowania</h2>
+
+<h5 id="np-4027">Warunki obsługi ACL dla widoków listy</h5>
+
+<p>W celu zapewnienie prawidłowego działania uprawnień ACL dla widoków list, konfiguracja listy musi spełniać następujące warunki:</p>
+
+<ul>
+  <li>Na karcie <code class="language-plaintext highlighter-rouge">Ogólne</code> musi zostać zaznaczone co najmniej jedno pole wyboru w grupie <code class="language-plaintext highlighter-rouge">Weryfikacja uprawnień</code> (<code class="language-plaintext highlighter-rouge">Według szablonu instancji</code> i/lub <code class="language-plaintext highlighter-rouge">Według szablonu statusu</code>)</li>
+  <li>Zapytanie źródłowe dla widoku listy musi zwracać kolumny <em>[ACLId]</em> i <em>[Status]</em></li>
+  <li>Na karcie <code class="language-plaintext highlighter-rouge">Ustawienia listy</code> muszą być włączone przełączniki <code class="language-plaintext highlighter-rouge">Stronicowanie</code> i <code class="language-plaintext highlighter-rouge">Funkcja server-side</code></li>
+</ul>
+
+<p>W przypadku widoków list generowanych poleceniem <code class="language-plaintext highlighter-rouge">Utwórz flow</code> dwa ostatnie warunki są spełnione domyślnie, Dla widoków tworzonych samodzielnie, konsultant musi dopilnować, aby zostały one spełnione. <em>(T:0666)</em></p>
+
+<h5 id="np-3866-4112">SQL RAISERROR</h5>
+
+<p>W <strong>Informacjach do patcha 1.4.2.4</strong> podano błędny zakres poziomu istotności dla ostrzeżeń wyświetlanych przy użyciu metody SQL RAISERROR. Poprawny zakres wynosi od 6 do 10.</p>
+
+<p>W <strong>Informacjach do wersji 1.4.2.1</strong> podano błędny przykład użycia przedrostka <em>[MSG]</em> w celu wyłączenia komunikatów systemowych (<code class="language-plaintext highlighter-rouge">Wykonano poprawnie</code>/<code class="language-plaintext highlighter-rouge">Wystąpił błąd</code>). W celu prawidłowego działania ten przedrostek musi zostać umieszczony na początku treści komunikatu, np:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="n">RAISERROR</span><span class="p">(</span>
+          <span class="s1">'[MSG]Wartość jest nieprawidłowa.'</span><span class="p">,</span> <span class="c1">-- tekst komunikatu</span>
+          <span class="mi">10</span><span class="p">,</span> <span class="c1">-- poziom istotności</span>
+          <span class="mi">1</span> <span class="c1">-- stan</span>
+            <span class="p">)</span>
+</code></pre></div></div>
+
+<h5 id="np-3983">Kontrolka <code class="language-plaintext highlighter-rouge">Pole czasu</code></h5>
+
+<p>Kontrolka <code class="language-plaintext highlighter-rouge">Pole czasu</code> obsługuje tylko typ danych <em>datetime</em> i zapisuje w bazie danych wartości w formacie:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="mi">1900</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="o">*</span><span class="nx">godz</span><span class="o">*</span><span class="p">:</span><span class="o">*</span><span class="nx">min</span><span class="o">*</span><span class="p">:</span><span class="mf">02.000</span>
+</code></pre></div></div>
+<p>gdzie <em>godz</em> i <em>min</em> to wartość godziny i minuty ustawiona przy użyciu kontrolki. sekundy i milisekundy nie są obsługiwane. Aby prawidłowo wyświetlać czas w tej kontrolce należy użyć formatu <code class="language-plaintext highlighter-rouge">HH:mm</code>. <em>(T:0724)</em></p>
+
+:ET

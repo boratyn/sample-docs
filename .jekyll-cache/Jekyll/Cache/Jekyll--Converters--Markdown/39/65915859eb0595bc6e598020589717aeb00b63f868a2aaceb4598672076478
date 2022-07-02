@@ -1,0 +1,15 @@
+I"�<p>Aby wyznaczyć administratora uprawnień:</p>
+<ol>
+  <li>Zaloguj się, korzystając z profilu <em>superuser</em> lub z profilu użytkownika, który ma uprawnienia do administrowania uprawnieniami.</li>
+  <li>Kliknij polecenie <code class="language-plaintext highlighter-rouge">Administracja</code> w sekcji <code class="language-plaintext highlighter-rouge">ZARZĄDZANIE UPRAWNIENIAMI</code> w menu po lewej stronie. Zostanie wyświetlony ekran <code class="language-plaintext highlighter-rouge">Administracja uprawnieniami</code>.</li>
+  <li>Kliknij pozycję na karcie <code class="language-plaintext highlighter-rouge">Role biznesowe</code> lub kliknij kartę <code class="language-plaintext highlighter-rouge">Użytkownicy</code> i kliknij profil użytkownika, któremu chcesz nadać uprawnienia. Zostanie wyświetlona lista dostępnych uprawnień.</li>
+  <li>
+    <p>Zaznacz odpowiednie pola wyboru i kliknij przycisk <code class="language-plaintext highlighter-rouge">Zapisz</code></p>
+
+    <figure class="image" style="float:;clear:">
+   
+<img id="pba-set-admin-1800-1.png" src="/sample-docs/assets/images/manuals/pba-set-admin-1800-1.png" alt="" title="pba-set-admin-1800-1.png" width="" height="" />
+<figcaption>  </figcaption></figure>
+  </li>
+</ol>
+:ET

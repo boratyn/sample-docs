@@ -1,0 +1,21 @@
+<div class="topnav">
+    <a href={{ "index.html" | relative_url | prepend: '"' | append: '"'}} style="float:left;padding:0;">
+    <img src={{ "/assets/image2.png" | relative_url | prepend: '"' | append: '"'}} height="50px"alt="nAxiom - dokumentacja" />
+    </a>
+    <!-- Html Elements for Search -->
+    <input type="search" id="search-input" placeholder="Szukaj..." onchange="gotothetop()">
+  <!--
+    <div class="top-dropdown">
+    <button class="top-drop-bt">e-mail</button>
+      <div class="top-dropdown-content">support@nAxiom.com</div></div>
+  
+    <a href="https://naxiom.com/" target="_blank">nAxiom.com</a>
+    -->
+  </div>
+  
+  <div class="sidenav" >
+  
+  {% include master-toc.html toc-level=site.data.master-toc %}
+  
+  </div>
+  

@@ -1,0 +1,25 @@
+I")<p><code class="language-plaintext highlighter-rouge">Globalne uprawnienia aplikacji</code> to obszar grupujący następujące uprawnienia do korzystania z aplikacji biznesowych i ich tworzenia:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Zarządzanie definicjami aplikacji</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Przeglądanie listy aplikacji</code>: uprawnia do wyświetlenia listy aplikacji zdefiniowanych w danym środowisku nAxiom (<code class="language-plaintext highlighter-rouge">ADMINISTRACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Lista aplikacji</code>); w razie braku uprawnienia wyświetlana jest informacja o braku dostępu do strony.</li>
+      <li><code class="language-plaintext highlighter-rouge">Tworzenie aplikacji</code>: udostępnia przycisk <code class="language-plaintext highlighter-rouge">Dodaj definicję</code> na liście definicji aplikacji; w razie braku uprawnienia przycisk jest niewidoczny.</li>
+      <li><code class="language-plaintext highlighter-rouge">Edycja aplikacji</code>: udostępnia ikonę do edycji 
+<img style="display:inline;" id="but-edit-light.png" src="/sample-docs/assets/images/manuals/but-edit-light.png" alt="/sample-docs/assets/images/manuals/but-edit-light.png" height=";" />
+ w wierszu definicji aplikacji; w razie braku uprawnienia ikona jest niewidoczna.</li>
+      <li><code class="language-plaintext highlighter-rouge">Usuwanie aplikacji</code>: udostępnia ikonę do usuwania 
+<img style="display:inline;" id="but-trash.png" src="/sample-docs/assets/images/manuals/but-trash.png" alt="/sample-docs/assets/images/manuals/but-trash.png" height=";" />
+ w wierszu definicji aplikacji; w razie braku uprawnienia ikona jest niewidoczna.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Używanie wszystkich aplikacji</code>: umożliwia korzystanie ze wszystkich aplikacji, to jest korzystanie z poleceń menu udostępniających formularze i listy, do których użytkownik ma dostęp w związku z przypisanymi mu rolami biznesowymi.</li>
+  <li><code class="language-plaintext highlighter-rouge">Filtry SQL list</code>: umożliwia definiowanie filtrów dla list jako zapytań SQL (<em>FrontSPA</em> &gt; <em>NazwaListy</em> &gt; Lista rozwijana wyboru filtra &gt; <code class="language-plaintext highlighter-rouge">Ustawienia</code> &gt; <code class="language-plaintext highlighter-rouge">Dodaj nowy filtr predefiniowany</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">Rozbudowa wszystkich aplikacji</code>: umożliwia korzystanie z back-office w roli użytkownika tworzącego aplikacje biznesowe (zwyczajowo nazywanego <em>konsultantem</em>), z wyjątkiem dostępu do funkcji chronionych uprawnieniami z grupy <code class="language-plaintext highlighter-rouge">Zarządzanie definicjami aplikacji</code>.</li>
+</ul>
+
+<blockquote class="alert alert-info">
+  <p><i class="fa fa-info-circle"> <strong>Note:</strong> modyfikowanie zmiennych środowiskowych aplikacji (<code class="language-plaintext highlighter-rouge">ADMINISTRACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Lista aplikacji</code> &gt; ikona 
+<img style="display:inline;" id="but-vars.png" src="/sample-docs/assets/images/manuals/but-vars.png" alt="/sample-docs/assets/images/manuals/but-vars.png" height=";" />
+) wymaga posiadania uprawnień: <code class="language-plaintext highlighter-rouge">Przeglądanie listy aplikacji</code> oraz <code class="language-plaintext highlighter-rouge">Rozbudowa wszystkich aplikacji</code>.</i></p>
+</blockquote>
+:ET

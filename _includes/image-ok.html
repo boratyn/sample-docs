@@ -1,0 +1,4 @@
+   <figure class="image" style="float:{{ include.float }};clear:{{ include.clear }}">
+   {% capture img_path %}{{ page.img-folder }}/{{ include.url }}{% endcapture %}
+   <img id="{{ include.url }}" src="{{ img_path | relative_url }}" alt="{{ include.description }}" title="{{ include.url }}" width="{{ include.width }}" height="{{ include.height }}" >
+   <figcaption> {{ include.description }} </figcaption></figure>

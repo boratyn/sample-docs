@@ -1,0 +1,42 @@
+I"l	
+<h1>Informacje o wersji 1.5.2 z dn. 19-01-2022</h1>
+<p><a href="/sample-docs/downloads/informacje-o-patchu-1.5.2.pdf" title="Pobierz PDF" class="pdf"><img src="/sample-docs/assets/PDF_32.png" alt="PDF" /></a></p>
+
+<h2>Poprawki i usunięte błędy</h2>
+
+<h5 id="np-4256">Zamknięcie formularza podrzędnego czyści dane w formularzu nadrzędnym</h5>
+<p>Usunięto błąd, który powodował, że po zamknięciu formularza otwartego w trybie <em>dialog</em> lub <em>okno</em> dane w formularzu głównym (otwartym w trybie <em>link wewnętrzny</em>) były czyszczone.</p>
+
+<p><em>(T:0847)</em></p>
+
+<h5 id="np-4257">Błąd zapisu danych w formularzu</h5>
+<p>Usunięto przyczynę występowania komunikatu o błędzie konwersji typu <em>string</em> do typu <em>uniqueidentifier</em> podczas zapisu danych w formularzu wyświetlonym w trybie <em>dialog</em> lub <em>okno</em>.</p>
+
+<p><em>(T:0847)</em></p>
+
+<h5 id="np-4048">Nie działa akcja konwersji doc do pdf</h5>
+<p>Przywrócono działanie akcji konwersji pliku przypisanej do przycisku na przejściu workflow. Korzystając z tej akcji, należy pamiętać o zadeklarowaniu dozwolonych typów plików w definicji kategorii załączników. Dodatkowo w przypadku akcji na przejściu workflow, przed wykonaniem tej akcji należy użyć akcji systemowej <code class="language-plaintext highlighter-rouge">Zapisz rekord</code>.</p>
+
+<p><em>(T:0763)</em></p>
+
+<h5 id="np-4194">Nie można zapisać formularza dla schematu innego niż *core*</h5>
+<p>Usunięto błąd uniemożliwiający zapis formularza w przypadku użycia dla tabel systemowych schematu innego niż core.</p>
+
+<p><em>(T:0829)</em></p>
+
+<h5 id="np-4195">Problem z migracjami bazy danych po aktualizacji do wersji 1.5</h5>
+<p>Usunięto błąd, który powodował, że po aktualizacji do wersji 1.5 nie wyświetlała się strona aplikacji.</p>
+
+<p><em>(T:0829)</em></p>
+
+<h5 id="np-4252">Zwinięte kolumny w sekcji formularza</h5>
+<p>Usunięto problem, który powodował, że w niektórych przypadkach kolumny na sekcji typu lista były zwinięte i trzeba było je ręcznie rozwijać.</p>
+
+<p><em>(T:0817)</em></p>
+
+<h5 id="np-4275">Nie działa lista asynchroniczna korzystająca ze zdefiniowanej kontrolki</h5>
+<p>Usunięto problem, który powodował, że nie działała kontrolka typu <em>Lista wyboru SQL (Async)</em>, w której konfiguracji użyto zdefiniowanej kontrolki.</p>
+
+<p><em>(T:0852)</em></p>
+
+:ET

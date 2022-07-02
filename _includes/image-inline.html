@@ -1,0 +1,2 @@
+{% capture img_path %}{{ page.img-folder }}/{{ include.url }}{% endcapture %}
+<img style="display:inline;" id="{{ include.url }}" src="{{ img_path | relative_url }}" alt="{{ img_path | relative_url }}" height="{{ include.height }};" />

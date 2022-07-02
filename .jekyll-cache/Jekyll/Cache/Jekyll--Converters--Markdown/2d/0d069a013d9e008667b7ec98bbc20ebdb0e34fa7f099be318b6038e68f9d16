@@ -1,0 +1,6 @@
+I"G<p>Osobno przypisuje się sekwencję akcji przyciskowi wyświetlanemu na listach, a osobno przyciskowi wyświetlanemu na formularzach.</p>
+
+<p>Akcje przycisku pomocy przypisuje się na poziomie środowiska nAxiom w ustawieniach systemowych lub indywidualnie na poziomie definicji dokumentu biznesowego.  Przyciskowi można przypisać sekwencję akcji, jednak wymagane jest, aby w tej sekwencji znajdowała się akcja otwierania formularza.</p>
+
+<p>W najprostszym przypadku wystarczy zdefiniować dwie akcje otwierania formularza pomocy, jedną dla formularzy, a drugą dla list.</p>
+:ET

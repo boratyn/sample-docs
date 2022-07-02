@@ -1,0 +1,18 @@
+I"t<ol>
+  <li><a href="">Wyświetl</a> okno <code class="language-plaintext highlighter-rouge">Role biznesowe</code>.</li>
+  <li>Kliknij przycisk <code class="language-plaintext highlighter-rouge">Uprawnienia</code> w wierszu roli, której chcesz nadać uprawnienia.<br />
+Zostanie wyświetlona lista <code class="language-plaintext highlighter-rouge">Edycja uprawnień roli</code> z sekcjami i pozycjami menu, które można udostępnić dla danej roli.</li>
+  <li>Zaznacz pola wyboru obok nazw sekcji i pozycji menu, które chcesz udostępnić roli.</li>
+  <li>
+    <p>Kliknij przycisk <code class="language-plaintext highlighter-rouge">Zapisz</code>.<br />
+Uprawnienia zostaną zmienione.</p>
+
+    <figure class="image" style="float:;clear:">
+   
+<img id="env-1600-8.png" src="/sample-docs/assets/images/manuals/env-1600-8.png" alt="Edycja uprawnień roli" title="env-1600-8.png" width="" height="" />
+<figcaption> Edycja uprawnień roli </figcaption></figure>
+  </li>
+</ol>
+
+<p>Po przypisaniu uprawnień roli, każdy użytkownik, któremu zostanie przypisana ta rola, będzie mógł wybierać udostępnione pozycje w menu użytkownika.</p>
+:ET

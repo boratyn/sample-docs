@@ -1,0 +1,15 @@
+I"<p>Ustawienia dostępne na tej karcie:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Zawsze wyświetlaj przycisk pomocy</code>; przycisk pomocy jest wyświetlany na formularzu/liście niezależnie od tego, czy skonfigurowano jego obsługę.</li>
+  <li><code class="language-plaintext highlighter-rouge">Wyświetlaj tylko, gdy zdefiniowano pomoc</code>: (ustawienie domyślne) przyciski są wyświetlane, jeśli zdefiniowano akcje wywoływane przyciskiem pomocy.</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Nigdy nie wyświetlaj</code>: ukrywa przycisk pomocy na liście/formularzu; ustawienie przydatne np. w przypadku formularza do wyświetlania pomocy.</p>
+
+    <figure class="image" style="float:;clear:">
+   
+ <img id="help-icon-pl-1800-1.png" src="/sample-docs/assets/images/manuals/help-icon-pl-1800-1.png" alt="Opcje wyświetlania przycisku pomocy" title="help-icon-pl-1800-1.png" width="" height="" />
+ <figcaption> Opcje wyświetlania przycisku pomocy </figcaption></figure>
+  </li>
+</ul>
+:ET

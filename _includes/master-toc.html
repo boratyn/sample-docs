@@ -1,0 +1,15 @@
+<ul class="sidenav-toc">
+  {% for item in include.toc-level %}
+  {% if item.done == 1 %}
+    <li class="sidenav-toc {% if item.url == page.url %}active{% endif %}" ><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+    {% if item.folderitems %}
+      {% include master-toc.html toc-level=item.folderitems %}
+    {% endif %}
+  {% else %}
+    <li class="sidenav-toc-inactive" ><a href="#">{{ item.title }}</a></li>
+    {% if item.folderitems %}
+      {% include master-toc.html toc-level=item.folderitems %}
+    {% endif %}
+  {% endif %}
+  {% endfor %}
+</ul>
