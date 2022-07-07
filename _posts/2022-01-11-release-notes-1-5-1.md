@@ -10,13 +10,13 @@ author: Dariusz Boratyn
 sidebar: mydoc_sidebar
 permalink: sample3
 customtitle: true
+keywords: features, news, bugs, fixes
 ---
 
 {% capture currentversion %}{{ page.version }}{% endcapture %}
 {% for ver in site.data.releasenotes.versions %}
 {% capture refversion %}{{ ver.version }}{% endcapture %}
 {% if refversion == currentversion %}
-[![PDF]({{ "/assets/PDF_32.png" | relative_url }})]({{ page.pdffilename | prepend: "/downloads/" | relative_url }} "Pobierz PDF"){: .pdf}
 {% for sect in ver.sections %}
 <h2>{{ sect.sectiontitle }}</h2>
 {% for task in sect.tasks %}

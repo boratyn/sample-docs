@@ -6,7 +6,7 @@ lastupdate: 2022-06-27
 lastupdateversion: 1.8
 summary: |-
   W aplikacjach biznesowych nAxiom można wyświetlać pomoc dotyczącą formularzy, list, definicji dokumentów biznesowych oraz statusów. Treść pomocy jest wyświetlana w zdefiniowanym przez konsultanta formularzu, kiedy użytkownik kliknie ikonę koła ratunkowego {% include image-inline.html url="but-sos.png" %}. Zależnie od ustawień, ikona pomocy jest wyświetlana w obszarze ikon systemowych (np. kontekst, audyt, odśwież) na formularzu i w widoku listy (także w sekcji typu lista).
-keywords: help
+keywords: help, user guide, chapter
 topics:
   - /topics/help-intro-pl
   - /topics/help-add-pl
