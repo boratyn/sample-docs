@@ -4,17 +4,38 @@ layout: none
 search: exclude
 ---
 
-{% assign pages = site.html_pages | where_exp: "page", "page.search != 'exclude'"  %}
+
 [
-{% for page in pages %}
+{% for page in site.articles %}
 {
 "title": "{{ page.title | escape }}",
 "tags": "{{ page.tags }}",
 "keywords": "{{page.keywords}}",
-"url": "{{ page.url | remove: "/"}}",
-"summary": "{{page.summary | strip }}"
+"url": "{{ page.url | remove: "/"}}"
+{% unless forloop.last %},{% endunless %}
+},
+{% endfor %}
+
+{% for page in site.chapters %}
+{
+"title": "{{ page.title | escape }}",
+"tags": "{{ page.tags }}",
+"keywords": "{{page.keywords}}",
+"url": "{{ page.url | remove: "/"}}"
+{% unless forloop.last %},{% endunless %}
 }
-{% unless forloop.last and site.posts.size < 1 %},{% endunless %}
+,
+{% endfor %}
+
+{% for page in site.tutorials %}
+{
+"title": "{{ page.title | escape }}",
+"tags": "{{ page.tags }}",
+"keywords": "{{page.keywords}}",
+"url": "{{ page.url | remove: "/"}}"
+{% unless forloop.last %},{% endunless %}
+}
+,
 {% endfor %}
 
 {% for post in site.posts %}
@@ -23,10 +44,9 @@ search: exclude
 "title": "{{ post.title | escape }}",
 "tags": "{{ post.tags }}",
 "keywords": "{{post.keywords}}",
-"url": "{{ post.url | remove: "/" }}",
-"summary": "{{post.summary | strip }}"
-}
+"url": "{{ post.url | remove: "/" }}"
 {% unless forloop.last %},{% endunless %}
+}
 {% endfor %}
 
 ]
