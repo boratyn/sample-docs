@@ -1,0 +1,120 @@
+I"9<h1 id="pref">Preface</h1>
+
+<p>Topic based authoring is simply result of observation that complete description of almost any technical product can be divided to bunch of self explanatory units - called <em>topics</em>.</p>
+
+<p>When we speak about any abstract technical product, we can assume there are information about product requirements, product configuration, tasks one can accomplish with the product. There could be also variations of the product and some information could be common for all of them, but other can differ.</p>
+
+<p>In such case having repository of topics and proper tools would allow combine them in many different ways to publish complete product guides, “how to” instructions for different tasks, product comparison, FAQ, tutorials and more.</p>
+
+<p>It appears to be cumbersome at first, on the other hand it could be beneficial. Each information appears only once in its topic — “single source of truth”. This greatly reduces inaccuracies, eases updates and content reusing. With complex product or product portfolios it could save money!</p>
+
+<p>So that’s how DITA came up. Darwin Information Typing Architecture is an enterprise grade technical documentation standard with XML as a native markup and specialized authoring systems like Oxygen XML, MadCap Flare or Paligo to name a few. But there is barrier to entry with DITA, especially from Word/PDF-based perspective.</p>
+
+<p>But with lightweight markup languages like Markdown and static site generators like Jekyll you can reap most benefits of topic based authoring completely free. I wouldn’t say “in no time”, however.</p>
+
+<p>Plus, you can add any version control system to implement “doc-as-code” approach with branches, collaborations, peer-reviews and other usefull features known to developers.</p>
+
+<h1 id="topics">Types of topics</h1>
+
+<p>What information could be in topic? Basically, it could be:</p>
+<ul>
+  <li>step by step task description,</li>
+  <li>concept with explanations presenting user some idea,</li>
+  <li>reference detailing with structured information, for example command parameters ora configuration settings in dialog box.</li>
+</ul>
+
+<p>Keeping these three types in mind, it is easier to divide information into topics. But you can also develop different workflows for processing different types of topics, for example with different attributes — this is called <em>specialization</em>. Also you can apply different styles for publishing, so it could be easier for target audience to read the docs.</p>
+
+<p>Fill free to invent any other types of topics you deem to be useful.</p>
+
+<h1 id="structure">Structure of topic</h1>
+
+<p>Topic is unit of information with some basic structure. Topic should normally have <em>title</em> and <em>content</em>. But you can also add an <em>alternate title</em>, <em>abstract</em>, <em>related links</em> and other. These elements come from DITA but working outside of its schema one can freely shape topic structure.</p>
+
+<p>The open question is whether topics could be nested. If it works for you, why not.</p>
+
+<p>So, how to write the topic with its structure? Well, if you use Jekyll, you can put most of elements in topic <em>front matter</em>. For example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s">Topic title</span>
+<span class="na">alt-title</span><span class="pi">:</span> <span class="s">Topic alt-title</span>
+<span class="na">subject</span><span class="pi">:</span> <span class="s">What this topic is about</span>
+<span class="na">abstract</span><span class="pi">:</span> <span class="pi">|-</span>
+  <span class="s">Some preface to the topic.</span>
+<span class="na">uipath</span><span class="pi">:</span> <span class="pi">|-</span>
+  <span class="s">Where to look for topic subject matter in software.</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s">John Doe</span>
+<span class="na">keywords</span><span class="pi">:</span> <span class="s">some, words or phrases, one, can use to, find the topic</span>
+<span class="na">relatedtopics</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">/topics/reltopic1_id</span>
+  <span class="pi">-</span> <span class="s">/topics/reltopic2_id</span>
+  <span class="pi">-</span> <span class="s">/topics/reltopic3_id</span>
+<span class="na">createdate</span><span class="pi">:</span> <span class="s">2022-07-07</span>
+<span class="na">revs</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">revdate</span><span class="pi">:</span> 
+    <span class="na">version</span><span class="pi">:</span> 
+    <span class="na">reviewer</span><span class="pi">:</span> 
+    <span class="na">revisionscope</span><span class="pi">:</span> <span class="pi">&gt;</span> 
+      
+</code></pre></div></div>
+<p>Then, goes the topic content in Markdown. To reference different elements of topic, you use <em>Liquid</em> syntax (from <em>Shopify</em>) in include and layout files. But this concerns combining topics in higher level content element…</p>
+
+<h1 id="combine">Combining topics together</h1>
+
+<p>When you want to compile, lets say <em>chapter</em> from several topics, use <code class="language-plaintext highlighter-rouge">include</code> directive from Liquid. For example</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">\</span>
+
+
+
+
+
+
+<span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span>
+<span class="no">Wprowadzenie</span>
+<span class="o">&lt;</span><span class="sr">/h2&gt;
+
+
+&lt;span id="help-intro-pl"&gt;&lt;/s</span><span class="n">pan</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">div</span> <span class="n">markdown</span><span class="o">=</span><span class="s2">"span"</span> <span class="k">class</span><span class="o">=</span><span class="s2">"bs-callout bs-callout-primary"</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="no">Abstract</span><span class="ss">:&lt;</span><span class="o">/</span><span class="n">b</span><span class="o">&gt;</span> <span class="no">W</span> <span class="n">aplikacjach</span> <span class="n">biznesowych</span> <span class="n">nAxiom</span> <span class="n">mo</span><span class="err">ż</span><span class="n">na</span> <span class="n">wy</span><span class="err">ś</span><span class="n">wietla</span><span class="err">ć</span> <span class="n">pomoc</span> <span class="n">dotycz</span><span class="err">ą</span><span class="n">c</span><span class="err">ą</span> <span class="n">formularzy</span><span class="p">,</span> <span class="n">list</span><span class="p">,</span> <span class="n">definicji</span> <span class="n">dokument</span><span class="err">ó</span><span class="n">w</span> <span class="n">biznesowych</span> <span class="n">oraz</span> <span class="n">status</span><span class="err">ó</span><span class="n">w</span><span class="o">.</span> <span class="no">Tre</span><span class="err">ść</span> <span class="n">pomocy</span> <span class="n">jest</span> <span class="n">wy</span><span class="err">ś</span><span class="n">wietlana</span> <span class="n">w</span> <span class="n">zdefiniowanym</span> <span class="n">przez</span> <span class="n">konsultanta</span> <span class="n">formularzu</span><span class="p">,</span> <span class="n">kiedy</span> <span class="n">u</span><span class="err">ż</span><span class="n">ytkownik</span> <span class="n">kliknie</span> <span class="n">ikon</span><span class="err">ę</span> <span class="n">ko</span><span class="err">ł</span><span class="n">a</span> <span class="n">ratunkowego</span> 
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">style</span><span class="o">=</span><span class="s2">"display:inline;"</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"but-sos.png"</span> <span class="n">src</span><span class="o">=</span><span class="s2">"/sample-docs/assets/images/articles/but-sos.png"</span> <span class="n">alt</span><span class="o">=</span><span class="s2">"/sample-docs/assets/images/articles/but-sos.png"</span> <span class="n">height</span><span class="o">=</span><span class="s2">";"</span> <span class="o">/&gt;</span>
+<span class="o">.</span> <span class="no">Zale</span><span class="err">ż</span><span class="n">nie</span> <span class="n">od</span> <span class="n">ustawie</span><span class="err">ń</span><span class="p">,</span> <span class="n">ikona</span> <span class="n">pomocy</span> <span class="n">jest</span> <span class="n">wy</span><span class="err">ś</span><span class="n">wietlana</span> <span class="n">w</span> <span class="n">obszarze</span> <span class="n">ikon</span> <span class="n">systemowych</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span> <span class="nf">kontekst</span><span class="p">,</span> <span class="n">audyt</span><span class="p">,</span> <span class="n">od</span><span class="err">ś</span><span class="n">wie</span><span class="err">ż</span><span class="p">)</span> <span class="n">na</span> <span class="n">formularzu</span> <span class="n">i</span> <span class="n">w</span> <span class="n">widoku</span> <span class="n">listy</span> <span class="p">(</span><span class="n">tak</span><span class="err">ż</span><span class="n">e</span> <span class="n">w</span> <span class="n">sekcji</span> <span class="n">typu</span> <span class="n">lista</span><span class="p">).</span><span class="nf">&lt;</span><span class="o">/</span><span class="n">div</span><span class="o">&gt;</span>
+
+
+
+
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Przyk</span><span class="err">ł</span><span class="n">adowy</span> <span class="n">scenariusz</span> <span class="n">konfigurowania</span> <span class="n">pomocy</span> <span class="n">dla</span> <span class="n">u</span><span class="err">ż</span><span class="n">ytkownika</span> <span class="n">mo</span><span class="err">ż</span><span class="n">e</span> <span class="n">wygl</span><span class="err">ą</span><span class="n">da</span><span class="err">ć</span> <span class="n">nast</span><span class="err">ę</span><span class="n">puj</span><span class="err">ą</span><span class="n">co</span><span class="ss">:&lt;</span><span class="o">/</span><span class="nb">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">ol</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="no">Doda</span><span class="err">ć</span> <span class="n">tre</span><span class="err">ść</span> <span class="n">pomocy</span> <span class="k">do</span> <span class="n">element</span><span class="err">ó</span><span class="n">w</span> <span class="n">aplikacji</span><span class="p">.</span><span class="nf">&lt;</span><span class="o">/</span><span class="n">li</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="no">Zdefiniowa</span><span class="err">ć</span> <span class="n">formularz</span> <span class="k">do</span> <span class="n">wy</span><span class="err">ś</span><span class="n">wietlania</span> <span class="n">pomocy</span><span class="p">.</span><span class="nf">&lt;</span><span class="o">/</span><span class="n">li</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="no">Zdefiniowa</span><span class="err">ć</span> <span class="n">akcje</span> <span class="n">otwierania</span> <span class="n">formularza</span> <span class="n">z</span> <span class="n">przekazywaniem</span> <span class="n">identyfikatora</span> <span class="n">formularza</span><span class="o">/</span><span class="n">statusu</span> <span class="n">i</span> <span class="n">listy</span><span class="p">.</span><span class="nf">&lt;</span><span class="o">/</span><span class="n">li</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="no">Przypisa</span><span class="err">ć</span> <span class="n">akcje</span> <span class="n">wykonywane</span> <span class="n">po</span> <span class="n">klikni</span><span class="err">ę</span><span class="n">ciu</span> <span class="n">przycisku</span> <span class="ss">pomocy:
+    </span><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">w</span> <span class="n">ustawieniach</span> <span class="n">systemowych</span><span class="o">&lt;</span><span class="sr">/li&gt;
+      &lt;li&gt;indywidualnie dla dokumentu biznesowego&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/ul&gt;
+  &lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="no">Skonfigurowa</span><span class="err">ć</span> <span class="n">opcje</span> <span class="n">wy</span><span class="err">ś</span><span class="n">wietlania</span> <span class="n">przycisku</span> <span class="n">pomocy</span> <span class="n">dla</span> <span class="n">list</span> <span class="n">i</span> <span class="n">formularzy</span><span class="p">.</span><span class="nf">&lt;</span><span class="o">/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="sr">/ol&gt;
+
+
+
+
+&lt;div class="bs-callout bs-callout-info"&gt; &lt;b&gt;Related topics:&lt;/</span><span class="n">b</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">""</span><span class="o">&gt;&lt;</span><span class="sr">/a&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="sr">/ul&gt;
+&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+</code></pre></div></div>
+
+<h1 id="conrefs">Conrefs</h1>
+
+<p>About content reusing at the paragraph level</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Topic based authoring is perfectly suited for agile authoring</p>
+:ET

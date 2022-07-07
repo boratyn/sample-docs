@@ -1,0 +1,37 @@
+<!-- sekcja przycisków nawigacyjnych - prawy górny róg, pionowo -->
+
+<div class="pasekNaw w3-display-bottommiddle" style="position:fixed;margin-bottom:2%;">
+
+<!-- odnośnik do spisu treści -->
+<span>
+<img src={{ "/assets/img-res/outline_toc_black_18dp.png" | relative_url }} alt="toc" class="img-spis w3-btn w3-pale-green w3-border w3-round" style="display:inline;width:60px;height:50px;" onclick="if (window.history.length == 1) {window.close();} else {window.history.back();}" /><div class="spis w3-tag w3-light-gray">table of contents (t)</div></span>
+<!-- przycisk informacji wstępnych -->
+<span><img src={{ "/assets/img-res/outline_info_black_18dp.png" | relative_url }} alt="info" class="img-info w3-btn w3-pale-green w3-border w3-round" onclick="document.getElementById('id01').style.display='block'" style="display:inline;width:60px;height:50px;"/>
+<div class="info w3-tag w3-light-gray">info panel (i)</div>
+</span>
+<!-- przycisk od początku -->
+<span><img src={{ "/assets/img-res/outline_refresh_black_18dp.png" | relative_url }} alt="reload" class="img-od-nowa w3-btn w3-pale-green w3-border w3-round" onclick="location.reload()" style="display:inline;width:60px;height:50px;"/>
+<div class="od-nowa w3-tag w3-light-gray">repeat (r)</div>
+</span>
+<!-- przycisk poprzedni krok -->
+<span><img src={{ "/assets/img-res/outline_arrow_back_black_18dp.png" | relative_url }} alt="step back" class="img-wstecz w3-btn w3-pale-green w3-border w3-round" onclick="plusElems(-1)" style="display:inline;width:60px;height:50px;"/>
+<div class="wstecz w3-tag w3-light-gray">step back (&larr;)</div>
+</span>
+<!-- przycisk następny krok -->
+<span><img src={{ "/assets/img-res/outline_arrow_forward_black_18dp.png" | relative_url }} alt="next step" class="img-dalej w3-btn w3-pale-green w3-border w3-round" onclick="plusElems(1)" style="display:inline;width:60px;height:50px;"/>
+<div class="dalej w3-tag w3-light-gray">next step (&rarr;)</div>
+</span>
+<!-- odnośnik do dokumentacji -->
+<span><a id="link-dokumentacja" href="{{ page.docPath | relative_url }}" alt="link to user guide" target="_blank">
+<img src={{ "/assets/img-res/outline_menu_book_black_18dp.png" | relative_url }} class="img-dokumentacja w3-btn w3-pale-green w3-border w3-round" style="display:inline;width:60px;height:50px;"/>
+<div class="dokumentacja w3-tag w3-light-gray">user guide (u)</div>
+</a>
+</span>
+
+
+</div>
+
+
+<!-- wskaźnik postępu, początek 0%, ostatni krok 100% -->
+<progress value="0" max="100"></progress>
+

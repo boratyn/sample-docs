@@ -1,0 +1,265 @@
+I"�i<h2 id="help-in-apps">Pomoc w aplikacjach biznesowych</h2>
+
+<p><span id="help-intro-pl"></span></p>
+
+<p>Przykładowy scenariusz konfigurowania pomocy dla użytkownika może wyglądać następująco:</p>
+
+<ol>
+  <li>Dodać treść pomocy do elementów aplikacji.</li>
+  <li>Zdefiniować formularz do wyświetlania pomocy.</li>
+  <li>Zdefiniować akcje otwierania formularza z przekazywaniem identyfikatora formularza/statusu i listy.</li>
+  <li>Przypisać akcje wykonywane po kliknięciu przycisku pomocy:
+    <ul>
+      <li>w ustawieniach systemowych</li>
+      <li>indywidualnie dla dokumentu biznesowego</li>
+    </ul>
+  </li>
+  <li>Skonfigurować opcje wyświetlania przycisku pomocy dla list i formularzy.</li>
+</ol>
+
+<p>Kolejne kroki tego scenariusza opisano poniżej.</p>
+
+<h2 id="authoring-content">Definiowanie treści pomocy</h2>
+
+<p><span id="help-add-pl"></span></p>
+
+<ol>
+  <li>Wyświetl definicję listy, formularza, dokumentu biznesowego lub diagram procesu.</li>
+  <li>Kliknij przycisk <code class="language-plaintext highlighter-rouge">Tłumaczenia i pomoc</code>.
+    <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> na diagramie procesu przycisk <code class="language-plaintext highlighter-rouge">Tłumaczenia i pomoc</code> jest reprezentowany przez ostatnią ikonę z prawej strony na pasku narzędzi u góry.</div>
+
+    <figure class="image" style="float:;clear:">
+   
+<img id="help-add-pl-1800-1.png" src="/sample-docs/assets/images/manuals/help-add-pl-1800-1.png" alt="" title="help-add-pl-1800-1.png" width="" height="" />
+<figcaption>  </figcaption></figure>
+    <p>Zostanie wyświetlona tabela z tekstami tłumaczeń i pomocy.</p>
+  </li>
+  <li>Kliknij przycisk <code class="language-plaintext highlighter-rouge">Edycja</code> w wierszu, w którym wartość w kolumnie <code class="language-plaintext highlighter-rouge">Pole</code> to <code class="language-plaintext highlighter-rouge">Help</code>. Zostanie wyświetlone okno <code class="language-plaintext highlighter-rouge">Edycja tłumaczenia/pomocy</code>.
+    <figure class="image" style="float:;clear:">
+   
+<img id="help-add-pl-1800-2.png" src="/sample-docs/assets/images/manuals/help-add-pl-1800-2.png" alt="" title="help-add-pl-1800-2.png" width="" height="" />
+<figcaption>  </figcaption></figure>
+  </li>
+  <li>Wpisz tekst pomocy w kolumnie <code class="language-plaintext highlighter-rouge">Tekst tłumaczenia</code> dla języka polskiego; w tym polu można wkleić przygotowany osobno kod HTML z tekstem pomocy sformatowanym przy użyciu znaczników HTML; opcjonalnie podaj treść pomocy dla innych języków.
+    <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> treść pomocy można także wprowadzić bezpośrednio w odpowiedniej komórce tabeli tłumaczeń; aby zmiana została zapisana, należy nacisnąć przycisk <em>Enter</em>.</div>
+  </li>
+</ol>
+
+<p>Treść pomocy można również dodawać, używając polecenia <code class="language-plaintext highlighter-rouge">Tłumaczenia i pomoc</code> z menu <code class="language-plaintext highlighter-rouge">ADMINISTRACJA</code>. To polecenie wyświetla całą tabelę tłumaczeń, aby łatwiej znaleźć odpowiednie wiersze, należy w filtrze kolumny <code class="language-plaintext highlighter-rouge">Pole</code> wpisać wartość <em>Help</em>.</p>
+
+<p>Treść pomocy jest zapisywana w bazie danych w tabeli <em>core.Translations</em>.</p>
+
+<h2 id="define-form">Definiowanie formularza pomocy</h2>
+
+<p><span id="help-form-pl"></span></p>
+
+<p>Do wyświetlania treści pomocy potrzebny jest formularz. Najprościej go utworzyć poleceniem <code class="language-plaintext highlighter-rouge">Generuj elementy aplikacji</code> w <code class="language-plaintext highlighter-rouge">Kreatorze modeli danych</code>. Wystarczy użyć uproszczonego modelu danych (formularz będzie wyświetlał statyczne dane i nie będzie służył do przetwarzania dokumentów).</p>
+
+<p>Formularz do wyświetlania treści pomocy można zdefiniować na kilka sposobów. Przedstawiony poniżej ma wyłącznie charakter poglądowy.</p>
+
+<ol>
+  <li>Zdefiniuj uproszczony model danych i w jego tabeli zdefiniuj pola <em>ParentId</em> i <em>StatusId</em> (typ <em>liczba całkowita</em>, anuluj zaznaczenie pole <code class="language-plaintext highlighter-rouge">Wymagane</code>). Będą to tzw. <em>pola techniczne</em> do przekazania identyfikatorów elementów, dla których ma zostać wyświetlona pomoc.
+    <figure class="image" style="float:;clear:">
+   
+<img id="help-form-pl-1800-1.png" src="/sample-docs/assets/images/manuals/help-form-pl-1800-1.png" alt="" title="help-form-pl-1800-1.png" width="" height="" />
+<figcaption>  </figcaption></figure>
+  </li>
+  <li>Uruchom polecenie <code class="language-plaintext highlighter-rouge">Generuj elementy aplikacji</code> dla utworzonego modelu danych.</li>
+  <li>Przejdź do projektu utworzonego formularza i usuń sekcje pól użytkownika, załączników i komentarzy (opcjonalnie), a dla sekcji pól systemowych wyłącz przełączniki <code class="language-plaintext highlighter-rouge">Aktywna</code> i <code class="language-plaintext highlighter-rouge">Aktywna w wersji mobile</code> oraz zmniejsz szerokość kolumny macierzystej do 1 kolumny.</li>
+  <li>Dodaj nową kolumnę, a w niej dodaj trzy sekcje o nazwach <em>Pomoc dla statusu</em>, <em>Pomoc dla formularza</em> i <em>Pomoc dla dokumentu biznesowego</em>; dla wszystkich wybierz <code class="language-plaintext highlighter-rouge">Sekcja HTML</code> jako typ sekcji.</li>
+  <li>Kliknij przycisk <code class="language-plaintext highlighter-rouge">Ustawienia</code> i skonfiguruj sekcje zgodnie z przykładami podanymi poniżej.</li>
+</ol>
+
+<p>Sekcja <code class="language-plaintext highlighter-rouge">Pomoc dla statusu</code>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Zezwól na parsowanie HTML z pól formularza (unsecure)</code>: włącz ten przełącznik, aby obsłużyć treść pomocy wprowadzoną jako kod HTML</p>
+
+<p><code class="language-plaintext highlighter-rouge">Edytor SQL Query</code>:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">Value</span><span class="p">]</span> <span class="k">as</span> <span class="n">TranslatedHelp</span>
+  <span class="k">FROM</span>   <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Translations</span><span class="p">]</span> <span class="n">translations</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">TranslationDefinitions</span><span class="p">]</span> <span class="n">translationDefinitions</span>
+  <span class="k">ON</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">translations</span><span class="p">.</span><span class="n">TranslationDefinitionId</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">BusinessStatuses</span><span class="p">]</span> <span class="n">businessStatuses</span>
+  <span class="k">ON</span> <span class="n">businessStatuses</span><span class="p">.</span><span class="n">Help</span> <span class="o">=</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Guid</span>
+  <span class="k">WHERE</span>  <span class="n">translations</span><span class="p">.</span><span class="n">LanguageId</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">_LangId</span><span class="err">}</span>
+  <span class="k">AND</span> <span class="n">businessStatuses</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">StatusId</span><span class="err">}</span> <span class="c1">-- wartość StatusId zostanie przekazana w akcji otwierania formularza</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">Edytor HTML</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- treść pomocy zwrócona przez zapytanie SQL --&gt;</span>
+<span class="nt">&lt;QueryRowTemplate&gt;</span>{@Query_TranslatedHelp}<span class="nt">&lt;/QueryRowTemplate&gt;</span>
+</code></pre></div></div>
+
+<p>Sekcja <code class="language-plaintext highlighter-rouge">Pomoc dla formularza</code>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Edytor SQL Query</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">Value</span><span class="p">]</span> <span class="k">as</span> <span class="n">TranslatedHelp</span>
+  <span class="k">FROM</span>   <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Translations</span><span class="p">]</span> <span class="n">translations</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">TranslationDefinitions</span><span class="p">]</span> <span class="n">translationDefinitions</span>
+  <span class="k">ON</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">translations</span><span class="p">.</span><span class="n">TranslationDefinitionId</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Forms</span><span class="p">]</span> <span class="n">forms</span>
+  <span class="k">ON</span> <span class="n">forms</span><span class="p">.</span><span class="n">Help</span> <span class="o">=</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Guid</span>
+  <span class="k">WHERE</span>  <span class="n">translations</span><span class="p">.</span><span class="n">LanguageId</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">_LangId</span><span class="err">}</span>
+  <span class="k">AND</span> <span class="n">forms</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">ParentId</span><span class="err">}</span>  <span class="c1">-- wartość ParentId zostanie przekazana w akcji otwierania formularza</span>
+</code></pre></div></div>
+<p>Pozostałe ustawienia, jak w poprzedniej sekcji.</p>
+
+<p>Sekcja <code class="language-plaintext highlighter-rouge">Pomoc dla dokumentu biznesowego</code>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Edytor SQL Query</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">Value</span><span class="p">]</span> <span class="k">as</span> <span class="n">TranslatedHelp</span>
+  <span class="k">FROM</span>   <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Translations</span><span class="p">]</span> <span class="n">translations</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">TranslationDefinitions</span><span class="p">]</span> <span class="n">translationDefinitions</span>
+  <span class="k">ON</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">translations</span><span class="p">.</span><span class="n">TranslationDefinitionId</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">BusinessDocuments</span><span class="p">]</span> <span class="n">businessDocuments</span>
+  <span class="k">ON</span> <span class="n">businessDocuments</span><span class="p">.</span><span class="n">Help</span> <span class="o">=</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Guid</span>
+  <span class="k">WHERE</span>  <span class="n">translations</span><span class="p">.</span><span class="n">LanguageId</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">_LangId</span><span class="err">}</span>
+  <span class="k">AND</span> <span class="n">businessDocuments</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> 
+    <span class="p">(</span><span class="k">SELECT</span> <span class="n">BusinessDocumentId</span>
+       <span class="k">FROM</span> <span class="n">core</span><span class="p">.</span><span class="n">Forms</span>
+       <span class="k">WHERE</span> <span class="n">Forms</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">ParentId</span><span class="err">}</span><span class="p">)</span>  <span class="c1">-- wartość ParentId zostanie przekazana w akcji otwierania formularza</span>
+</code></pre></div></div>
+
+<p>Pozostałe ustawienia, jak w poprzedniej sekcji. Na koniec zapisz formularz.</p>
+
+<p>Następnie utwórz kopię tego formularza w celu wyświetlania pomocy dla list. W tym formularzu możliwe będzie wyświetlanie pomocy dla list i dla dokumentu biznesowego, dlatego usuń sekcję <em>Pomoc dla statusu</em>, a nazwę sekcji pomocy dla formularza zmień na <code class="language-plaintext highlighter-rouge">Pomoc dla listy</code>. Konieczne będą także zmiany zapytania SQL pobierającego treść pomocy do wyświetlenia.</p>
+
+<p>Sekcja <code class="language-plaintext highlighter-rouge">Pomoc dla list</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">Value</span><span class="p">]</span> <span class="k">as</span> <span class="n">TranslatedHelp</span>
+  <span class="k">FROM</span>   <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Translations</span><span class="p">]</span> <span class="n">translations</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">TranslationDefinitions</span><span class="p">]</span> <span class="n">translationDefinitions</span>
+  <span class="k">ON</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">translations</span><span class="p">.</span><span class="n">TranslationDefinitionId</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Grids</span><span class="p">]</span> <span class="n">grids</span>
+  <span class="k">ON</span> <span class="n">forms</span><span class="p">.</span><span class="n">Help</span> <span class="o">=</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Guid</span>
+  <span class="k">WHERE</span>  <span class="n">translations</span><span class="p">.</span><span class="n">LanguageId</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">_LangId</span><span class="err">}</span>
+  <span class="k">AND</span> <span class="n">forms</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">ParentId</span><span class="err">}</span>  <span class="c1">-- wartość ParentId zostanie przekazana w akcji otwierania formularza</span>
+</code></pre></div></div>
+
+<p>Sekcja <code class="language-plaintext highlighter-rouge">Pomoc dla dokumentu biznesowego</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="p">[</span><span class="n">Value</span><span class="p">]</span> <span class="k">as</span> <span class="n">TranslatedHelp</span>
+  <span class="k">FROM</span>   <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">Translations</span><span class="p">]</span> <span class="n">translations</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">TranslationDefinitions</span><span class="p">]</span> <span class="n">translationDefinitions</span>
+  <span class="k">ON</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="n">translations</span><span class="p">.</span><span class="n">TranslationDefinitionId</span>
+  <span class="k">JOIN</span> <span class="p">[</span><span class="n">core</span><span class="p">].[</span><span class="n">BusinessDocuments</span><span class="p">]</span> <span class="n">businessDocuments</span>
+  <span class="k">ON</span> <span class="n">businessDocuments</span><span class="p">.</span><span class="n">Help</span> <span class="o">=</span> <span class="n">translationdefinitions</span><span class="p">.</span><span class="n">Guid</span>
+  <span class="k">WHERE</span>  <span class="n">translations</span><span class="p">.</span><span class="n">LanguageId</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">_LangId</span><span class="err">}</span>
+  <span class="k">AND</span> <span class="n">businessDocuments</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> 
+    <span class="p">(</span><span class="k">SELECT</span> <span class="n">BusinessDocumentId</span>
+       <span class="k">FROM</span> <span class="n">core</span><span class="p">.</span><span class="n">Grids</span>
+       <span class="k">WHERE</span> <span class="n">Grids</span><span class="p">.</span><span class="n">Id</span> <span class="o">=</span> <span class="err">{</span><span class="o">@</span><span class="n">ParentId</span><span class="err">}</span><span class="p">)</span>  <span class="c1">-- wartość ParentId zostanie przekazana w akcji otwierania formularza</span>
+</code></pre></div></div>
+
+<p>Jest możliwe obsłużenie pomocy za pomocą jednego tylko formularza z czterema sekcjami. Sekcje niepotrzebne w konkretnym przypadku byłyby ukrywane. Jednak takie rozwiązanie wydaje się bardziej skomplikowane.</p>
+
+<h2 id="help-button-actions">Akcje przycisku pomocy</h2>
+
+<p><span id="help-actions-pl"></span></p>
+
+<div class="bs-callout bs-callout-primary"> <b>Abstract:</b> Aby przycisk pomocy wyświetlał formularz, należy mu przypisać odpowiednią akcję otwierania formularza.</div>
+
+<p>Osobno przypisuje się sekwencję akcji przyciskowi wyświetlanemu na listach, a osobno przyciskowi wyświetlanemu na formularzach.</p>
+
+<p>Akcje przycisku pomocy przypisuje się na poziomie środowiska nAxiom w ustawieniach systemowych lub indywidualnie na poziomie definicji dokumentu biznesowego.  Przyciskowi można przypisać sekwencję akcji, jednak wymagane jest, aby w tej sekwencji znajdowała się akcja otwierania formularza.</p>
+
+<p>W najprostszym przypadku wystarczy zdefiniować dwie akcje otwierania formularza pomocy, jedną dla formularzy, a drugą dla list.</p>
+
+<h3 id="open-form-action">Akcja otwierania formularza</h3>
+
+<p><span id="help-actions-openform-pl"></span></p>
+
+<p>Kliknij podmenu <code class="language-plaintext highlighter-rouge">Akcje</code> w menu <code class="language-plaintext highlighter-rouge">NARZĘDZIA</code>, a następnie kliknij polecenie <code class="language-plaintext highlighter-rouge">Otwieranie formularza</code>. Kliknij przycisk <code class="language-plaintext highlighter-rouge">Nowa akcja</code>. Skonfiguruj wymagane parametry. Kliknij przycisk <code class="language-plaintext highlighter-rouge">Wybierz z listy</code> i wybierz z listy odpowiedni formularz. Następnie kliknij przycisk <code class="language-plaintext highlighter-rouge">Wybierz parametry i wartości</code> i skonfiguruj przekazywanie identyfikatorów, zależnie od formularza docelowego, jak na poniższych ilustracjach.</p>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="help-actions-openform-pl-1800-1.png" src="/sample-docs/assets/images/manuals/help-actions-openform-pl-1800-1.png" alt="Wyświetlanie pomocy dla formularzy" title="help-actions-openform-pl-1800-1.png" width="" height="" />
+   <figcaption> Wyświetlanie pomocy dla formularzy </figcaption></figure>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="help-actions-openform-pl-1800-2.png" src="/sample-docs/assets/images/manuals/help-actions-openform-pl-1800-2.png" alt="Wyświetlanie pomocy dla list" title="help-actions-openform-pl-1800-2.png" width="" height="" />
+   <figcaption> Wyświetlanie pomocy dla list </figcaption></figure>
+
+<p>Na podstawie przekazanych wartości parametrów zapytania w sekcjach HTML zwrócą odpowiednią treść pomocy.</p>
+
+<h3 id="ustawienia-systemowe">Ustawienia systemowe</h3>
+
+<p><span id="system-settings-help-pl"></span></p>
+
+<div class="bs-callout bs-callout-default"> <b>Path:</b> Kliknij <code class="language-plaintext highlighter-rouge">Ustawienia systemu</code> w menu <code class="language-plaintext highlighter-rouge">ADMINISTRACJA</code> i rozwiń sekcję <code class="language-plaintext highlighter-rouge">Pomoc i dokumentacja</code>.</div>
+
+<p>Ustawienia dostępne w tej sekcji:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Zbiór akcji wywoływanych po kliknięciu w przycisk pomocy w formularzach</code>: wybierz odpowiednie akcje; wśród nich musi znajdować się akcja otwierania formularza.</li>
+  <li><code class="language-plaintext highlighter-rouge">Zbiór akcji wywoływanych po kliknięciu w przycisk pomocy w listach</code>:  wybierz odpowiednie akcje; wśród nich musi znajdować się akcja otwierania formularza.</li>
+</ul>
+
+<h3 id="bd-help-tab">Dokument biznesowy, karta Pomoc dla użytkownika</h3>
+
+<p><span id="busdoc-tabs-help-pl"></span></p>
+
+<div class="bs-callout bs-callout-default"> <b>Path:</b> Kliknij polecenie <code class="language-plaintext highlighter-rouge">Dokumenty biznesowe</code> w menu <code class="language-plaintext highlighter-rouge">PROCESY BIZNESOWE</code> i kliknij ikonę edycji w wierszu wybranej definicji dokumentu biznesowego. Następnie kliknij kartę <code class="language-plaintext highlighter-rouge">Pomoc dla użytkownika</code>.</div>
+
+<p>Ustawienia dostępne na tej karcie:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Nadpisz domyślne ustawienia systemu</code>: włącz, aby móc wybrać akcje przycisku pomocy dla formularzy i list przypisanych do tego dokumentu biznesowego.</li>
+  <li><code class="language-plaintext highlighter-rouge">Formularze</code>: wybierz sekwencję akcji dla przycisku pomocy wyświetlanego na formularzach.</li>
+  <li><code class="language-plaintext highlighter-rouge">Listy</code>: wybierz sekwencję akcji dla przycisku pomocy wyświetlanego na listach.</li>
+  <li><code class="language-plaintext highlighter-rouge">Zapisz zmiany i zamknij</code>: kliknij, aby zapisać zmiany i zamknąć okno dialogowe.</li>
+</ul>
+
+<h3 id="form-grid-help-tab">Formularz/lista, karta Pomoc dla użytkownika</h3>
+
+<p><span id="common-tabs-help-pl"></span></p>
+
+<div class="bs-callout bs-callout-primary"> <b>Abstract:</b> Domyślnie przycisk pomocy jest wyświetlany na listach i formularzach, o ile zdefiniowano akcje, które ma obsługiwać.</div>
+
+<div class="bs-callout bs-callout-default"> <b>Path:</b> Kliknij polecenie <code class="language-plaintext highlighter-rouge">Formularze</code>/<code class="language-plaintext highlighter-rouge">Listy</code> w menu <code class="language-plaintext highlighter-rouge">INTERFEJSU UŻYTKOWNIKA</code> i kliknij ikonę edycji wybranym wierszu. Następnie kliknij kartę <code class="language-plaintext highlighter-rouge">Pomoc dla użytkownika</code>.</div>
+
+<p>Ustawienia dostępne na tej karcie:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Zawsze wyświetlaj przycisk pomocy</code>; przycisk pomocy jest wyświetlany na formularzu/liście niezależnie od tego, czy skonfigurowano jego obsługę.</li>
+  <li><code class="language-plaintext highlighter-rouge">Wyświetlaj tylko, gdy zdefiniowano pomoc</code>: (ustawienie domyślne) przyciski są wyświetlane, jeśli zdefiniowano akcje wywoływane przyciskiem pomocy.</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Nigdy nie wyświetlaj</code>: ukrywa przycisk pomocy na liście/formularzu; ustawienie przydatne np. w przypadku formularza do wyświetlania pomocy.</p>
+
+    <figure class="image" style="float:;clear:">
+   
+ <img id="help-icon-pl-1800-1.png" src="/sample-docs/assets/images/manuals/help-icon-pl-1800-1.png" alt="Opcje wyświetlania przycisku pomocy" title="help-icon-pl-1800-1.png" width="" height="" />
+ <figcaption> Opcje wyświetlania przycisku pomocy </figcaption></figure>
+  </li>
+</ul>
+
+<h2 id="sample-help">Przykład pomocy</h2>
+
+<p><span id="help-examples-pl"></span></p>
+
+<p>Poniżej przedstawiono ilustracje pomocy wyświetlanej dla równych elementów aplikacji po zastosowaniu konfiguracji opisanej w tym artykule. Przykłady dotyczą aplikacji do rejestrowania zgłoszeń reklamacyjnych, której tworzenie opisano w instrukcji <strong><a href="/sample-docs/first-steps">Pierwsze kroki</a></strong>.</p>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="help-examples-pl-1800-1.png" src="/sample-docs/assets/images/manuals/help-examples-pl-1800-1.png" alt="Pomoc dla listy" title="help-examples-pl-1800-1.png" width="" height="" />
+   <figcaption> Pomoc dla listy </figcaption></figure>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="help-examples-pl-1800-2.png" src="/sample-docs/assets/images/manuals/help-examples-pl-1800-2.png" alt="Pomoc dla dokumentu biznesowego" title="help-examples-pl-1800-2.png" width="" height="" />
+   <figcaption> Pomoc dla dokumentu biznesowego </figcaption></figure>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="help-examples-pl-1800-3.png" src="/sample-docs/assets/images/manuals/help-examples-pl-1800-3.png" alt="Pomoc dla formularza" title="help-examples-pl-1800-3.png" width="" height="" />
+   <figcaption> Pomoc dla formularza </figcaption></figure>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="help-examples-pl-1800-4.png" src="/sample-docs/assets/images/manuals/help-examples-pl-1800-4.png" alt="Pomoc dla statusu" title="help-examples-pl-1800-4.png" width="" height="" />
+   <figcaption> Pomoc dla statusu </figcaption></figure>
+
+:ET

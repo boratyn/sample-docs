@@ -1,0 +1,94 @@
+---
+# liquid, bierz go
+---
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title> {{ page.title }} </title>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"></meta>
+<link rel="stylesheet" href="{{ "/assets/css/w3.css" | relative_url }}" />
+<link rel="stylesheet" href="{{ "/assets/css/samouczek.css" | relative_url }}" type="text/css" />
+<link rel="icon" href="{{ "/assets/favicon.ico" | relative_url }}" />
+<script src="{{"/assets/js/samouczek.js" | relative_url }}" type="text/javascript"></script>
+<style>
+img.ilustracja {
+  max-width: 1026px;
+  margin-top: 0%;
+}
+</style>
+</head>
+
+<body onload="document.getElementById('id01').style.display='block' " onkeyup="keyboardShortcut(event)">
+
+
+{% capture info_text %}
+ {{ page.info }}
+{% endcapture %}
+
+{% include samouczek-info.html text=info_text %}
+
+<article id="{{ page.title-slug }}">
+
+<!-- Kolumna na instrukcje tekstowe, 30% szerokości -->
+
+<div class="opis w3-col" style="width:30%">
+
+
+<!-- Tytuł samouczka -->
+
+<h1><strong>{{ page.title }}</strong></h1>
+
+{{page.content}}
+
+
+
+</div>
+
+<!-- miejsce na obrazki -->
+
+<div class="ekran w3-rest">
+
+{% capture img_path %}{{ page.img-folder }}/{{ page.firstImg }}{% endcapture %}
+
+<img class="ilustracja" style="display:block" src= "{{ img_path | relative_url }}" />
+
+{% for sect in page.sections %}
+  {% for step in sect.steps %}
+    {% for obrazek in step.images %}
+      {% capture img_path %}{{ page.img-folder }}/{{ obrazek.nextImg }}{% endcapture %}
+      <img class="ilustracja" src= "{{ img_path | relative_url }}" />
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+
+    <svg style="display:block">
+    {% for svg in page.firstSVG %}
+      {% assign coord=svg | split: ", " %}
+      <rect x="{{coord[0]}}%" y="{{coord[1]}}%" width="{{coord[2]}}%" height="{{coord[3]}}%"/>
+    {% endfor %}
+    </svg>
+
+
+
+{% for sect in page.sections %}
+  {% for step in sect.steps %}
+    {% for obrazek in step.images %}
+    <svg>
+      {% for svg in obrazek.SVGS %}
+        {% assign coord=svg | split: ", " %}
+        <rect x="{{coord[0]}}%" y="{{coord[1]}}%" width="{{coord[2]}}%" height="{{coord[3]}}%"/>
+      {% endfor %}
+    </svg>
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+
+</div>
+
+{% include samouczek-nav-horiz.html %}
+
+</article>
+</body>
+</html>

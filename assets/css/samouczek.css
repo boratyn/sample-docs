@@ -1,0 +1,195 @@
+﻿/* CSS do samouczków */
+
+* {
+  box-sizing: border-box;
+}
+a {
+	text-decoration: underline dashed;
+}
+body {
+    margin-left: 1%; 
+    margin-right: 1%; 
+/* wysokosc 93%, zeby gora i dol tla byly odsloniete */
+	height: 100%;
+	width: 100%;
+/*     margin-top: 2em; 
+    margin-bottom: 2em; */
+}
+code {
+		font-size: inherit;
+}
+h1 {
+		font-size:18px;
+		font-weight:400;
+}
+html {
+    margin:1% 0.5%;
+/* brandingiem jest tlo dla body */
+/*    background-image: url("tlo1.png"); */
+/* skalowanie contain, zeby nie przycinalo */
+/*	background-size: contain; */
+/*	background-repeat: no-repeat; */
+/*	background-attachment: fixed; */
+/*	height: 100%; */
+/*	background-color: #ffffff; */
+/* 	overflow: hidden; */
+}
+p {
+/*		line-height:1.1; */
+		margin:1% 0.7%;
+		font-size: 13px;
+}
+p.instrukcja::before {
+  content: "-"; /* • Insert content that looks like bullets */
+  padding-right: 4px;
+  color: inherit; /* Or a color you prefer */
+}
+progress {position: fixed;
+        bottom: 5px;
+        right: 10px;}
+rect {
+        
+		stroke:chartreuse;
+		stroke-width:3;
+		fill-opacity:0;
+		opacity:1;
+		rx:5;
+		ry:5;
+        -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+         animation-name: example;
+         animation-duration: 0.3s;
+		 animation-iteration-count: 10;
+}
+span {
+		font-size: inherit;
+}
+img {
+  position: relative;
+  width: 100%;
+}
+svg {
+	    display: none;
+        position: absolute;
+		width:100%;
+		height:100%;
+        max-width:1026px;
+		max-height:720px;
+		top:0.2%;
+		left:0.1%; 
+}
+ul {
+		font-size: 13px;
+}
+ol {
+		font-size: 13px;
+}
+.pad10 {
+  padding-left: 25px;
+}
+
+.ekran {
+  position: relative;
+  max-width: 1026px;
+  height: 100%;
+  border: 1px groove blue;
+  margin-right: 1%;
+/* 		padding:0.6% 0.4%; */
+}
+.ilustracja {
+
+		display:none;
+}
+.instrukcja {
+        opacity:0;
+}
+.opis {
+		max-height:720px;
+		overflow-y:auto;
+		padding-right: 1%;
+}
+.pasekNaw {
+/* żeby ograniczyć wielkość, trzeba dopasować tooltips
+	    max-width:60px; */
+		display:inline;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+  from {stroke:black;
+		stroke-width:2;}
+  to {stroke:chartreuse;
+		stroke-width:3;}
+}
+
+/* Standard syntax */
+@keyframes example {
+  from {stroke:black;
+		stroke-width:2;}
+  to {stroke:chartreuse;
+		stroke-width:3;}
+}
+@keyframes fadeOut {
+  from {opacity:1;}
+  to {opacity:0;}
+}
+/* etykietki do przycisków nawigacyjnych */
+.dalej {
+		opacity:0;
+		position:absolute;
+		left:200px;
+		bottom:60px;
+}
+.img-dalej:hover + .dalej {
+         animation-name: fadeOut;
+         animation-duration: 2s;
+}
+.wstecz {
+		opacity:0;
+		position:absolute;
+		left:150px;
+		bottom:60px;
+}
+.img-wstecz:hover + .wstecz {
+         animation-name: fadeOut;
+         animation-duration: 2s;
+}
+.od-nowa {
+		opacity:0;
+		position:absolute;
+		left:100px;
+		bottom:60px;
+}
+.img-od-nowa:hover + .od-nowa {
+         animation-name: fadeOut;
+         animation-duration: 2s;
+}
+.info {
+		opacity:0;
+		position:absolute;
+		left:50px;
+		bottom:60px;
+}
+.img-info:hover + .info {
+         animation-name: fadeOut;
+         animation-duration: 2s;
+}
+.dokumentacja {
+		opacity:0;
+		position:absolute;
+		left:250px;
+		bottom:60px;
+}
+.img-dokumentacja:hover + .dokumentacja {
+		animation-name: fadeOut;
+        animation-duration: 2s;
+}
+.spis {
+		opacity:0;
+		position:absolute;
+		left:0px;
+		bottom:60px;
+}
+.img-spis:hover + .spis {
+		animation-name: fadeOut;
+        animation-duration: 2s;
+}

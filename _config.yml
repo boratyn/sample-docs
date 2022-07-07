@@ -67,6 +67,10 @@ collections:
     output: "true"
   chapters:
     output: "true"
+  articles:
+    output: "true"
+  tutorials:
+    output: "true"
 # collections are declared here. this renders the content in _tooltips and processes it, but doesn't output it as actual files in the output unless you change output to true
 
 defaults:
@@ -105,24 +109,42 @@ defaults:
       path: ""
       type: "topics"
     values:
-#      layout: "topics-html"
-#      layout: "topics-help"
-#      layout: "topics-pdf"
       img-folder: "/assets/images/manuals"
-#      img-folder: "assets/images/manuals"
-      docs-item: "temat instrukcji użytkownika"
-      docIndex: "topics-index.html"
+      docs-item: "single topic"
+      search: true
+      sidebar: home_sidebar
+      topnav: topnav
   -
     scope:
       path: ""
       type: "chapters"
     values:
-#      layout: "chapters-html"
-#      layout: "topics-help"
-#      layout: "topics-pdf"
       img-folder: "/assets/images/manuals"
-      docs-item: "rozdział instrukcji użytkownika"
-      docIndex: "chapters-index.html"
+      docs-item: "user guide chapter"
+      search: true
+      sidebar: home_sidebar
+      topnav: topnav
+  -
+    scope:
+      path: ""
+      type: "articles"
+    values:
+      img-folder: "/assets/images/articles"
+      docs-item: "white paper"
+      search: true
+      sidebar: home_sidebar
+      topnav: topnav
+  -
+    scope:
+      path: ""
+      type: "tutorials"
+    values:
+      layout: "samouczek-layout"
+      img-folder: "/assets/images/tutorials"
+      docs-item: "interactive tutorial"
+      search: true
+      sidebar: home_sidebar
+      topnav: topnav
 
 # these are defaults used for the frontmatter for these file types
 

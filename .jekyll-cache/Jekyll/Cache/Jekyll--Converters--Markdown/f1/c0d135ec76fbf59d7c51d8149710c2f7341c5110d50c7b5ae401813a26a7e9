@@ -1,0 +1,45 @@
+I"�<h1 id="pref">Preface</h1>
+
+<p>Topic based authoring is simply result of observation that complete description of almost any technical product can be divided to bunch of self explanatory units - called <em>topics</em>.</p>
+
+<p>When we speak about any abstract technical product, we can assume there are information about product requirements, product configuration, tasks one can accomplish with the product. There could be also variations of the product and some information could be common for all of them, but other can differ.</p>
+
+<p>In such case having repository of topics and proper tools would allow combine them in many different ways to publish complete product guides, “how to” instructions for different tasks, product comparison, FAQ, tutorials and more.</p>
+
+<p>It appears to be cumbersome at first, on the other hand it could be beneficial. Each information appears only once in its topic — “single source of truth”. This greatly reduces inaccuracies, implies ease of updates and content reusing. With complex product or product portfolios it could save money!</p>
+
+<p>So that’s how DITA came up. Darwin Information Typing Architecture is an enterprise grade technical documentation standard with XML as a native markup and specialized authoring systems like Oxygen XML, MadCap Flare or Paligo to name a few. But there is barrier to entry with DITA, especially from Word/PDF-based perspective.</p>
+
+<p>But with lightweight markup languages like Markdown and static site generators like Jekyll you can reap most benefits of topic based authoring completely free. I wouldn’t say “in no time”, however.</p>
+
+<p>Plus, you can add any version control system to implement “doc-as-code” approach with branches, collaborations, peer-reviews and other usefull features known to developers.</p>
+
+<h1 id="topics">Types of topics</h1>
+
+<p>What information could be in topic? Basically, it could be:</p>
+<ul>
+  <li>step by step task description,</li>
+  <li>concept with explanations presenting user some idea,</li>
+  <li>reference detailing with structured information, for example command parameters ora configuration settings in dialog box.</li>
+</ul>
+
+<p>Keeping these three types in mind, it is easier to divide information into topics. But you can also develop different workflows for processing different types of topics, for example with different attributes — this is caaled <em>specialization</em>. And also you can apply different styles for publishing, so it could be easier for target audience to read the docs.</p>
+
+<p>Fill free to invent any other types of topics you deem to be useful.</p>
+
+<h1 id="structure">Structure of topic</h1>
+
+<p>Topic is unit of information with some basic structure.</p>
+
+<h1 id="combine">Combining topics together</h1>
+
+<p>How to mix topics into higher level content items (chapters)</p>
+
+<h1 id="conrefs">Conrefs</h1>
+
+<p>About content reusing at the paragraph level</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Topic based authoring is perfectly suited for agile authoring</p>
+:ET

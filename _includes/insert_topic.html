@@ -11,15 +11,21 @@
 {% capture conref %}{{ include.topic-id }}{% endcapture %}
 {% assign topic = site.topics | where:"id", conref  | first %}
 
-<{{include.h-level}}>
+
 {% if include.titletype == "main" %}
+<{{include.h-level}}>
 {{ topic.title }}
-{% elsif include.titletype == "alt" %}
-{{ topic.alt-title }}
-{% elsif include.titletype == "both" %}
-{{ topic.title }} — {{ topic.alt-title }}
-{% endif %}
 </{{include.h-level}}>
+{% elsif include.titletype == "alt" %}
+<{{include.h-level}}>
+{{ topic.alt-title }}
+</{{include.h-level}}>
+{% elsif include.titletype == "both" %}
+<{{include.h-level}}>
+{{ topic.title }} — {{ topic.alt-title }}
+</{{include.h-level}}>
+{% endif %}
+
 <span id="{{ include.topic-id | remove: '/topics/' }}"></span>
 {% if include.abstract %}
 <div markdown="span" class="bs-callout bs-callout-primary"> <b>Abstract:</b> {{ topic.abstract | liquify }}</div>

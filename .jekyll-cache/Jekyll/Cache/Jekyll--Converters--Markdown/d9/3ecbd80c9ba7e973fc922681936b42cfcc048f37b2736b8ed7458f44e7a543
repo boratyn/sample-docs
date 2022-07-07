@@ -1,0 +1,36 @@
+I"_
+<p><a href="/sample-docs/downloads/release-notes-1-5-1.pdf" title="Pobierz PDF" class="pdf"><img src="/sample-docs/assets/PDF_32.png" alt="PDF" /></a></p>
+
+<h2>Nowe funkcje</h2>
+
+<h4 id="np-3765">Konfiguracja listy użytkowników w strukturze organizacyjnej <i>(S:0650)</i></h4>
+<p>Dodano możliwość konfigurowania kolumn listy użytkowników wyświetlanej na karcie <code class="language-plaintext highlighter-rouge">Użytkownicy</code> w formularzu <code class="language-plaintext highlighter-rouge">Edycja jednostki organizacyjnej</code> (<code class="language-plaintext highlighter-rouge">KONFIGURACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Struktura organizacyjna</code>).
+Funkcjonalność wymaga określenia następujących ustawień (<code class="language-plaintext highlighter-rouge">SYSTEM</code> &gt; <code class="language-plaintext highlighter-rouge">Ustawienia</code> &gt; <code class="language-plaintext highlighter-rouge">Struktura organizacyjna</code>):</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Włącz własne ustawienia listy użytkowników</code>: przełącznik włączający funkcjonalność.</li>
+  <li><code class="language-plaintext highlighter-rouge">Własne zapytanie dla dostępnych użytkowników</code>: zapytanie źródłowe dla listy użytkowników dodanych do jednostki organizacyjnej wyświetlanej na karcie <code class="language-plaintext highlighter-rouge">Użytkownicy</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Własne zapytanie dla użytkowników w jednostce organizacyjnej</code>: zapytanie źródłowe dla listy wyświetlanej po kliknięciu przycisku <code class="language-plaintext highlighter-rouge">Dodaj użytkownika</code>.</li>
+</ul>
+
+<h4 id="np-4014">Akcja <code class="language-plaintext highlighter-rouge">Odśwież listę</code> <i>(S:0740)</i></h4>
+<p>Dodano nową akcję systemową <code class="language-plaintext highlighter-rouge">Odśwież listę</code>. Akcja jest dostępna tylko dla przycisków widoku listy (<code class="language-plaintext highlighter-rouge">Konfigurator list</code> &gt; <code class="language-plaintext highlighter-rouge">Edycja listy</code> &gt; <code class="language-plaintext highlighter-rouge">Przyciski listy</code>), a jej wykonanie powoduje odświeżenie rekordów wyświetlanych w widoku listy.</p>
+
+<h2>Poprawki i usunięte błędy</h2>
+
+<h4 id="np-4192">Zadanie cykliczne — pomoc kontekstowa <i>(S:0828)</i></h4>
+<p>Dodano pomoc kontekstową w oknie definiowania zadania cyklicznego.</p>
+
+<h4 id="np-4104">Sekcja Kalendarz — pomoc kontekstowa</h4>
+<p>Dodano pomoc kontekstową do sekcji typu kalendarz.</p>
+
+<h4 id="np-4039">Eliminacja znaków diakrytycznych z kodów pól i sekcji</h4>
+<p>Ze względu na problemy w działaniu zależności wyeliminowano możliwość stosowania znaków diakrytycznych w kodach sekcji i pól formularza. Dozwolone znaki to: a-z, A-Z, 0-9, _ (podkreślenie) oraz - (myślnik). W związku z powyższym wprowadzono następujące zmiany:</p>
+<ul>
+  <li>generowane przez system kody sekcji nie będą zawierać znaków diakrytycznych,</li>
+  <li>podczas wprowadzania kodu znaki diakrytyczne są automatycznie zamieniane na odpowiadające im znaki alfabetu łacińskiego,</li>
+  <li>dodano skrypt zmieniający w bazie danych wszystkie wystąpienia ciągu <em>_Sekcja_Pola_Użytkownika</em> na <em>_Sekcja_Pola_Uzytkownika</em>.</li>
+</ul>
+
+<p>W istniejących formularzach konieczna jest ręczna zmiana kodów zawierających znaki spoza dozwolonego zestawu. Zmiana nazwy może się wiązać z koniecznością aktualizacji wszelkich referencji do danego kodu, np. w zależnościach.</p>
+
+:ET

@@ -1,0 +1,75 @@
+I"S<h1 id="pref">Preface</h1>
+
+<p>Topic based authoring is simply result of observation that complete description of almost any technical product can be divided to bunch of self explanatory units - called <em>topics</em>.</p>
+
+<p>When we speak about any abstract technical product, we can assume there are information about product requirements, product configuration, tasks one can accomplish with the product. There could be also variations of the product and some information could be common for all of them, but other can differ.</p>
+
+<p>In such case having repository of topics and proper tools would allow combine them in many different ways to publish complete product guides, “how to” instructions for different tasks, product comparison, FAQ, tutorials and more.</p>
+
+<p>It appears to be cumbersome at first, on the other hand it could be beneficial. Each information appears only once in its topic — “single source of truth”. This greatly reduces inaccuracies, eases updates and content reusing. With complex product or product portfolios it could save money!</p>
+
+<p>So that’s how DITA came up. Darwin Information Typing Architecture is an enterprise grade technical documentation standard with XML as a native markup and specialized authoring systems like Oxygen XML, MadCap Flare or Paligo to name a few. But there is barrier to entry with DITA, especially from Word/PDF-based perspective.</p>
+
+<p>But with lightweight markup languages like Markdown and static site generators like Jekyll you can reap most benefits of topic based authoring completely free. I wouldn’t say “in no time”, however.</p>
+
+<p>Plus, you can add any version control system to implement “doc-as-code” approach with branches, collaborations, peer-reviews and other usefull features known to developers.</p>
+
+<h1 id="topics">Types of topics</h1>
+
+<p>What information could be in topic? Basically, it could be:</p>
+<ul>
+  <li>step by step task description,</li>
+  <li>concept with explanations presenting user some idea,</li>
+  <li>reference detailing with structured information, for example command parameters ora configuration settings in dialog box.</li>
+</ul>
+
+<p>Keeping these three types in mind, it is easier to divide information into topics. But you can also develop different workflows for processing different types of topics, for example with different attributes — this is called <em>specialization</em>. Also you can apply different styles for publishing, so it could be easier for target audience to read the docs.</p>
+
+<p>Fill free to invent any other types of topics you deem to be useful.</p>
+
+<h1 id="structure">Structure of topic</h1>
+
+<p>Topic is unit of information with some basic structure. Topic should normally have <em>title</em> and <em>content</em>. But you can also add an <em>alternate title</em>, <em>abstract</em>, <em>related links</em> and other. These elements come from DITA but working outside of its schema one can freely shape topic structure.</p>
+
+<p>The open question is whether topics could be nested. If it works for you, why not.</p>
+
+<p>So, how to write the topic with its structure? Well, if you use Jekyll, you can put most of elements in topic <em>front matter</em>. For example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s">Topic title</span>
+<span class="na">alt-title</span><span class="pi">:</span> <span class="s">Topic alt-title</span>
+<span class="na">subject</span><span class="pi">:</span> <span class="s">What this topic is about</span>
+<span class="na">abstract</span><span class="pi">:</span> <span class="pi">|-</span>
+  <span class="s">Some preface to the topic.</span>
+<span class="na">uipath</span><span class="pi">:</span> <span class="pi">|-</span>
+  <span class="s">Where to look for topic subject matter in software.</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s">John Doe</span>
+<span class="na">keywords</span><span class="pi">:</span> <span class="s">some, words or phrases, one, can use to, find the topic</span>
+<span class="na">relatedtopics</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">/topics/reltopic1_id</span>
+  <span class="pi">-</span> <span class="s">/topics/reltopic2_id</span>
+  <span class="pi">-</span> <span class="s">/topics/reltopic3_id</span>
+<span class="na">createdate</span><span class="pi">:</span> <span class="s">2022-07-07</span>
+<span class="na">revs</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">revdate</span><span class="pi">:</span> 
+    <span class="na">version</span><span class="pi">:</span> 
+    <span class="na">reviewer</span><span class="pi">:</span> 
+    <span class="na">revisionscope</span><span class="pi">:</span> <span class="pi">&gt;</span> 
+      
+</code></pre></div></div>
+<p>Then, goes the topic content in Markdown. To reference different elements of topic, you use <em>Liquid</em> syntax (from <em>Shopify</em>) in include and layout files. But this concerns combining topics in higher level content element…</p>
+
+<h1 id="combine">Combining topics together</h1>
+
+<p>When you want to compile, lets say <em>chapter</em> from several topics, use <code class="language-plaintext highlighter-rouge">include</code> directive from Liquid. For example</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<h1 id="conrefs">Conrefs</h1>
+
+<p>About content reusing at the paragraph level</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Topic based authoring is perfectly suited for agile authoring</p>
+:ET

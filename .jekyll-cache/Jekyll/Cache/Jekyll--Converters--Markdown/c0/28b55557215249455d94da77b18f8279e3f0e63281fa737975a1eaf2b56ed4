@@ -1,0 +1,27 @@
+I"'
+<ol>
+  <li>Wyświetl definicję listy, formularza, dokumentu biznesowego lub diagram procesu.</li>
+  <li>Kliknij przycisk <code class="language-plaintext highlighter-rouge">Tłumaczenia i pomoc</code>.
+    <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> na diagramie procesu przycisk <code class="language-plaintext highlighter-rouge">Tłumaczenia i pomoc</code> jest reprezentowany przez ostatnią ikonę z prawej strony na pasku narzędzi u góry.</div>
+
+    <figure class="image" style="float:;clear:">
+   
+<img id="help-add-pl-1800-1.png" src="/sample-docs/assets/images/manuals/help-add-pl-1800-1.png" alt="" title="help-add-pl-1800-1.png" width="" height="" />
+<figcaption>  </figcaption></figure>
+    <p>Zostanie wyświetlona tabela z tekstami tłumaczeń i pomocy.</p>
+  </li>
+  <li>Kliknij przycisk <code class="language-plaintext highlighter-rouge">Edycja</code> w wierszu, w którym wartość w kolumnie <code class="language-plaintext highlighter-rouge">Pole</code> to <code class="language-plaintext highlighter-rouge">Help</code>. Zostanie wyświetlone okno <code class="language-plaintext highlighter-rouge">Edycja tłumaczenia/pomocy</code>.
+    <figure class="image" style="float:;clear:">
+   
+<img id="help-add-pl-1800-2.png" src="/sample-docs/assets/images/manuals/help-add-pl-1800-2.png" alt="" title="help-add-pl-1800-2.png" width="" height="" />
+<figcaption>  </figcaption></figure>
+  </li>
+  <li>Wpisz tekst pomocy w kolumnie <code class="language-plaintext highlighter-rouge">Tekst tłumaczenia</code> dla języka polskiego; w tym polu można wkleić przygotowany osobno kod HTML z tekstem pomocy sformatowanym przy użyciu znaczników HTML; opcjonalnie podaj treść pomocy dla innych języków.
+    <div class="alert alert-success" role="alert"><i class="fa fa-check-square-o"></i> <b>Tip:</b> treść pomocy można także wprowadzić bezpośrednio w odpowiedniej komórce tabeli tłumaczeń; aby zmiana została zapisana, należy nacisnąć przycisk <em>Enter</em>.</div>
+  </li>
+</ol>
+
+<p>Treść pomocy można również dodawać, używając polecenia <code class="language-plaintext highlighter-rouge">Tłumaczenia i pomoc</code> z menu <code class="language-plaintext highlighter-rouge">ADMINISTRACJA</code>. To polecenie wyświetla całą tabelę tłumaczeń, aby łatwiej znaleźć odpowiednie wiersze, należy w filtrze kolumny <code class="language-plaintext highlighter-rouge">Pole</code> wpisać wartość <em>Help</em>.</p>
+
+<p>Treść pomocy jest zapisywana w bazie danych w tabeli <em>core.Translations</em>.</p>
+:ET

@@ -23,35 +23,31 @@ entries:
     output: web, pdf
     folderitems:
 
-    - title: Chapter 1
-      url: /chapters/front-pba-general-ref-pl.html
+    - title: Configuring help in applications
+      url: /sample1
       output: web, pdf
-      type: homepage
 
-    - title: Chapter 2
-      url: /chapters/help-general-pl.html
+  - title: Tutorials
+    output: web, pdf
+    folderitems:
+
+    - title: Registering incoming letter
+      url: /sample2
       output: web, pdf
+
 
   - title: Release Notes
     output: web, pdf
     folderitems:
 
-    - title: 1.5 Release notes
-      url: /2021/12/21/informacje-o-wersji-1-5.html
-      output: web, pdf
-
     - title: 1.5.1 Release notes
-      url: /2022/01/11/informacje-o-patchu-1-5-1.html
-      output: web, pdf
-
-    - title: 1.5.2 Release notes
-      url: /2022/01/19/informacje-o-patchu-1-5-2.html
+      url: /sample3
       output: web, pdf
 
   - title: „How to” Articles
     output: web, pdf
     folderitems:
 
-    - title: My first application
-      url: /mydoc_about_ruby_gems_etc.html
+    - title: Topic based authoring
+      url: /sample4
       output: web, pdf

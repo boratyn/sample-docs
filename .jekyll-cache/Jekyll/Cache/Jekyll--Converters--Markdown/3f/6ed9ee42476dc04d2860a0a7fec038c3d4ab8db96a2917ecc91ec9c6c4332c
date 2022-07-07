@@ -1,0 +1,307 @@
+I"�o
+<h1>Informacje o wersji 1.5.1 z dn. 17-01-2022</h1>
+<p><a href="/sample-docs/downloads/informacje-o-wersji-1-5-1.pdf" title="Pobierz PDF" class="pdf"><img src="/sample-docs/assets/PDF_32.png" alt="PDF" /></a></p>
+
+<h2>Nowe funkcje</h2>
+
+<h5 id="np-3765">Konfiguracja listy użytkowników w strukturze organizacyjnej <i>(S:0650)</i></h5>
+<p>Dodano możliwość konfigurowania kolumn listy użytkowników wyświetlanej na karcie <code class="language-plaintext highlighter-rouge">Użytkownicy</code> w formularzu <code class="language-plaintext highlighter-rouge">Edycja jednostki organizacyjnej</code> (<code class="language-plaintext highlighter-rouge">KONFIGURACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Struktura organizacyjna</code>).
+Funkcjonalność wymaga określenia następujących ustawień (<code class="language-plaintext highlighter-rouge">SYSTEM</code> &gt; <code class="language-plaintext highlighter-rouge">Ustawienia</code> &gt; <code class="language-plaintext highlighter-rouge">Struktura organizacyjna</code>):</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Włącz własne ustawienia listy użytkowników</code>: przełącznik włączający funkcjonalność.</li>
+  <li><code class="language-plaintext highlighter-rouge">Własne zapytanie dla dostępnych użytkowników</code>: zapytanie źródłowe dla listy użytkowników dodanych do jednostki organizacyjnej wyświetlanej na karcie <code class="language-plaintext highlighter-rouge">Użytkownicy</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Własne zapytanie dla użytkowników w jednostce organizacyjnej</code>: zapytanie źródłowe dla listy wyświetlanej po kliknięciu przycisku <code class="language-plaintext highlighter-rouge">Dodaj użytkownika</code>.</li>
+</ul>
+
+<h5 id="np-4014">Akcja <code class="language-plaintext highlighter-rouge">Odśwież listę</code> <i>(S:0740)</i></h5>
+<p>Dodano nową akcję systemową <code class="language-plaintext highlighter-rouge">Odśwież listę</code>. Akcja jest dostępna tylko dla przycisków widoku listy (<code class="language-plaintext highlighter-rouge">Konfigurator list</code> &gt; <code class="language-plaintext highlighter-rouge">Edycja listy</code> &gt; <code class="language-plaintext highlighter-rouge">Przyciski listy</code>), a jej wykonanie powoduje odświeżenie rekordów wyświetlanych w widoku listy.</p>
+
+<h5 id="np-2701">Uprawnienia ACL formularza dla tabeli katalogu</h5>
+<p>Dodano możliwość definiowania uprawnień ACL dla formularzy, dla których tabelą źródłową jest tabela katalogu.</p>
+
+<h5 id="np-3768">Weryfikacja rozszerzenia nazwy pliku przez Public API</h5>
+<p>Dodano weryfikację rozszerzenia nazwy pliku dodawanego jako załącznik w metodach interfejsu Public API.</p>
+
+<h2>Poprawki i usunięte błędy</h2>
+
+<h5 id="np-4192">Zadanie cykliczne — pomoc kontekstowa <i>(S:0828)</i></h5>
+<p>Dodano pomoc kontekstową w oknie definiowania zadania cyklicznego.</p>
+
+<h5 id="np-4104">Sekcja Kalendarz — pomoc kontekstowa</h5>
+<p>Dodano pomoc kontekstową do sekcji typu kalendarz.</p>
+
+<h5 id="np-4039">Eliminacja znaków diakrytycznych z kodów pól i sekcji</h5>
+<p>Ze względu na problemy w działaniu zależności wyeliminowano możliwość stosowania znaków diakrytycznych w kodach sekcji i pól formularza. Dozwolone znaki to: a-z, A-Z, 0-9, _ (podkreślenie) oraz - (myślnik). W związku z powyższym wprowadzono następujące zmiany:</p>
+<ul>
+  <li>generowane przez system kody sekcji nie będą zawierać znaków diakrytycznych,</li>
+  <li>podczas wprowadzania kodu znaki diakrytyczne są automatycznie zamieniane na odpowiadające im znaki alfabetu łacińskiego,</li>
+  <li>dodano skrypt zmieniający w bazie danych wszystkie wystąpienia ciągu <em>_Sekcja_Pola_Użytkownika</em> na <em>_Sekcja_Pola_Uzytkownika</em>.</li>
+</ul>
+
+<p>W istniejących formularzach konieczna jest ręczna zmiana kodów zawierających znaki spoza dozwolonego zestawu. Zmiana nazwy może się wiązać z koniecznością aktualizacji wszelkich referencji do danego kodu, np. w zależnościach.</p>
+
+<h5 id="np-4047">Identyfikatory GUID w kolumnie <em>Description</em>  <i>(S:0760)</i></h5>
+<p>Wprowadzono modyfikację zapisu wartości w kolumnie <em>[Description]</em> tabeli <em>[core].[BusinessStatuses]</em>. Od tej pory w tej kolumnie będą zapisywane wyłącznie identyfikatory z kolumny <em>[Guid]</em> w tabeli <em>[core].[TranslationDefinitions]</em>. Zmiana dotyczy tylko wpisów dodawanych po aktualizacji do bieżącej wersji.</p>
+
+<h5 id="np-4068">Obsługa wielkich liter w nazwach kolumn zapytania listy rozwijanej <i>(S:0767)</i></h5>
+<p>Wprowadzono modyfikację kontrolki typu lista rozwijana, która zapewnia obsługę wielkich liter w nazwach kolumn zwracanych przez zapytanie źródłowe listy rozwijanej. Dotyczy to konfiguracji list wyboru na formularzu oraz w menu <code class="language-plaintext highlighter-rouge">Kontrolki</code>.</p>
+
+<h5 id="np-4146">Odświeżanie aktywnego formularza po akcji <code class="language-plaintext highlighter-rouge">Zamknij formularz</code> <i>(S:0793)</i></h5>
+<p>Do akcji systemowej <code class="language-plaintext highlighter-rouge">Zamknij formularz</code> dodano przełącznik <code class="language-plaintext highlighter-rouge">Po zamknięciu odśwież aktywny formularz</code>. Jego włączenie powoduje, że po zamknięciu formularza wyświetlanego w trybie <code class="language-plaintext highlighter-rouge">Dialog</code> lub <code class="language-plaintext highlighter-rouge">Okno</code> odświeżany jest formularz/widok listy, z którego otwarto zamykany formularz.</p>
+
+<h5 id="np-4018">Wyświetlanie formularza w trybie <em>dialog</em> <i>(S:0744)</i></h5>
+<p>Wprowadzono poprawkę eliminującą problemy z wyświetlaniem formularza w trybie <em>dialog</em> bezpośrednio po uruchomieniu aplikacji.</p>
+
+<h5 id="np-4113">Zależność kolumna-pole formularza dla listy interesariuszy <i>(S:0790, 0826)</i></h5>
+<p>Poprawiono błąd, który powodował, że po zamknięciu okna konfiguracji listy wyboru była czyszczona ustawiona wcześniej zależność kolumna-pole formularza w przypadku, gdy pole formularza było kontrolką interesariuszy.</p>
+
+<h5 id="np-4145">Przewijanie formularza po zmianie sekcji <i>(S:0792)</i></h5>
+<p>Usunięto przyczynę przewijania formularza po kliknięciu zakładki sekcji na formularzu.</p>
+
+<h5 id="np-3829">Oczekiwanie na zakończenie akcji zapisu <i>(S:0672)</i></h5>
+<p>Wyeliminowano sytuację, w której próba wykonania innej czynności przed ukończeniem akcji zapisu kończyła się komunikatem o modyfikacji dokumentu przez innego użytkownika. Obecnie do chwili ukończenia zapisu użytkownik nie może podejmować innych czynności.</p>
+
+<h5 id="np-4102">Wartość domyślna dla słownika hierarchicznego</h5>
+<p>Poprawiono błąd uniemożliwiający ustawianie wartości domyślnej dla kontrolki słownika hierarchicznego w przypadku, gdy wybrana wartość nie była hasłem pierwszego poziomu słownika.</p>
+
+<h5 id="np-4051">Zmiany menu systemowego i menu użytkownika <i>(S:0764)</i></h5>
+<p>Wprowadzono następujące modyfikacje menu użytkownika:</p>
+<ul>
+  <li>Sekcja <code class="language-plaintext highlighter-rouge">Zdarzenia systemowe</code> nie jest już domyślnie wyświetlana na liście sekcji menu (<em>AdminSPA</em> &gt; <code class="language-plaintext highlighter-rouge">APLIKACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Menu użytkownika</code>.</li>
+  <li>W aplikacji <em>FrontSPA</em> wyłączono podświetlanie pozycji menu, której nie przypisano formularza ani widoku listy.</li>
+</ul>
+
+<h5 id="np-4052">Kolumna <em>ArchiveStatus</em> w systemowej funkcji tabelarycznej <i>(S:0768)</i></h5>
+<p>Poprawiono definicję funkcji tabelarycznej używanej przez polecenie <code class="language-plaintext highlighter-rouge">Utwórz flow</code> do definiowania źródła danych dla widoku listy (domyślna nazwa: <em>NazwaTabeli_View</em>). Obecnie ta funkcja uwzględnia kolumnę <code class="language-plaintext highlighter-rouge">ArchiveStatus</code> z tabeli dokumentu biznesowego.
+W przypadku funkcji tabelarycznych zdefiniowanych we wcześniejszych wersjach, konieczna jest ich samodzielna aktualizacja. W tym celu należy odnaleźć definicję funkcji w bazie danych (MS SQL Management Studio &gt; Databases &gt; <em>baza_danych</em> &gt; <code class="language-plaintext highlighter-rouge">Programmability</code> &gt; <code class="language-plaintext highlighter-rouge">Functions</code>  &gt; <code class="language-plaintext highlighter-rouge">Table-valued Functions</code> &gt; <em>nazwa_funkcji</em>), kliknąć ją prawym przyciskiem myszy i wybrać polecenie <code class="language-plaintext highlighter-rouge">Modify</code>. Następnie należy dopisać <em>d.[ArchiveStatus]</em> po kolumnie  <em>d.[ACLId]</em>.</p>
+<figure class="image" style="float:;clear:">
+   
+   <img id="np-4052-1.png" src="/sample-docs/assets/images/releasenotes/np-4052-1.png" alt="" title="np-4052-1.png" width="" height="" />
+   <figcaption>  </figcaption></figure>
+
+<h5 id="np-4075">Wartość domyślna kontrolki <code class="language-plaintext highlighter-rouge">Pole wyboru</code> <i>(S:0776)</i></h5>
+<p>Zmodyfikowano ustawianie wartości domyślnej w kontrolce <code class="language-plaintext highlighter-rouge">Pole wyboru</code>. Zarówno w przypadku zapytania SQL, jak i literału tekstowego obsługiwane są wartości <em>true</em>, <em>false</em>, <em>0</em> i <em>1</em>, w tym również ujęte w apostrofy (np. <em>‘false’</em>) i cudzysłowy (np. <em>“false”</em>).</p>
+<blockquote>
+  <p><strong>Info:</strong> jeśli wartość domyślna nie zostanie ustawiona, pole wyboru w nowym dokumencie ma domyślnie wartość <em>false</em>.</p>
+</blockquote>
+
+<h5 id="np-4058">Dodawanie/przenoszenie kontrolek do nowej sekcji</h5>
+<p>Usunięto błąd występujący podczas dodawania i przenoszenia kontrolek do nowo utworzonej sekcji.</p>
+
+<h5 id="np-4110">Akcja Import Excel <i>(S:0784)</i></h5>
+<p>Usunięto błąd, który powodował, że podczas próby uruchomienia akcji typu <code class="language-plaintext highlighter-rouge">Import Excel</code> był wyświetlany komunikat o błędzie <code class="language-plaintext highlighter-rouge">Wybrana akcja nie istnieje w systemie</code>.</p>
+
+<h5 id="np-4118">Transakcyjne wykonywanie akcji</h5>
+<p>Usunięto problem, który powodował, że umieszczenie akcji <code class="language-plaintext highlighter-rouge">Odśwież formularz</code> w sekwencji akcji wykonywanych transakcyjnie nie zawsze powodowało podział tej sekwencji na osobne transakcje.</p>
+
+<h5 id="np-4141">Akcja <code class="language-plaintext highlighter-rouge">Zmiana statusu dokumentu</code> <i>(S:0788, 0795)</i></h5>
+<p>Usunięto błąd, który uniemożliwiał edycję akcji <code class="language-plaintext highlighter-rouge">Zmiana statusu dokumentu</code> z poziomu okna wyboru akcji.</p>
+
+<h5 id="np-4181">Akcja <code class="language-plaintext highlighter-rouge">Zamknij formularz</code></h5>
+<p>Usunięto błąd akcji zamykania formularza, który powodował zawieszanie się aplikacji.</p>
+
+<h5 id="np-4092">Kopiowanie formularza</h5>
+<p>Usunięto błąd, który powodował, że w operacji kopiowania formularza pomijane były ustawienia kolorów w sekcji <code class="language-plaintext highlighter-rouge">Toolbar</code>.</p>
+
+<h5 id="np-4158">Sekcja typu Lista <i>(S:0817)</i></h5>
+<p>Usunięto problem, który powodował, że domyślnie zwinięta sekcja typu lista była po rozwinięciu zwężona i wymagała ręcznego rozszerzenia.</p>
+
+<h5 id="np-4064">Kontrolka <code class="language-plaintext highlighter-rouge">Blok HTML</code></h5>
+<p>Usunięto problem z wyświetlaniem kontrolki <code class="language-plaintext highlighter-rouge">Blok HTML</code>, dla której nie zdefiniowano ustawień.</p>
+
+<h5 id="np-4083">Funkcja agregująca w stopce widoku listy <i>(S:0780)</i></h5>
+<p>Usunięto błąd, który powodował, że po włączeniu grupowania widoku listy wartość funkcji agregującej w stopce nie wyświetlała się.</p>
+
+<h5 id="np-4098">Lista wyboru SQL <i>(S:0769)</i></h5>
+<p>Usunięto błąd, który powodował, że po zapisaniu rekordu w formularzu nie wyświetlała się wartość wybrana z listy rozwijanej, gdy klucz listy był typu <em>uniqueidentifier</em>.</p>
+
+<h5 id="np-4230">Akcja uprawnień <i>(S:0842)</i></h5>
+<p>Usunięto błąd walidacji zapytania SQL dla akcji uprawnień, który powodował, że kolumny <em>BusinessDocumentSchema</em> i <em>InstanceId</em> były traktowane jako wymagane.</p>
+
+<h5 id="np-4032">Akcja <code class="language-plaintext highlighter-rouge">Odśwież stronę</code></h5>
+<p>Usunięto błąd akcji <code class="language-plaintext highlighter-rouge">Odśwież stronę</code>, który występował w przypadku wywoływania tej akcji z formularza otworzonego w trybie <code class="language-plaintext highlighter-rouge">Dialog</code>.</p>
+
+<h5 id="np-4203">Akcja interesariuszy <i>(S:0834)</i></h5>
+<p>Usunięto błąd akcji interesariuszy. Obecnie wykonanie akcji dla przejścia workflow powoduje poprawne przypisanie użytkownika do listy interesariuszy.</p>
+
+<h2>Obejścia znanych błędów</h2>
+
+<h5 id="np-3845">Błąd rejestracji kontrolki podglądu raportu Telerik <i>(S:0682)</i></h5>
+<p>Wykryto problem z użyciem sekcji podglądu raportu w przypadku jednoczesnego korzystania z kilku lokalnych instalacji nAxiom. Problem powoduje wyświetlenie w sekcji podglądu komunikatu o błędzie rejestracji kontrolki podglądu w związku z brakiem dostępu do określonej ścieżki. Problem ten zostanie rozwiązany w kolejnej wersji nAxiom. Doraźnym rozwiązaniem jest zatrzymanie puli aplikacji <em>reportsapi</em> instancji, która blokuje kontrolkę i restartowanie tej samej puli w używanej instancji.</p>
+
+<h2>Zapowiedzi nowych funkcjonalności</h2>
+
+<h5 id="np-9999">Modernizacja modułu SQL Builder</h5>
+<p>Wykryto problem z użyciem sekcji podglądu raportu w przypadku jednoczesnego korzystania z kilku lokalnych instalacji nAxiom. Problem powoduje wyświetlenie w sekcji podglądu komunikatu o błędzie rejestracji kontrolki podglądu w związku z brakiem dostępu do określonej ścieżki. Problem ten zostanie rozwiązany w kolejnej wersji nAxiom. Doraźnym rozwiązaniem jest zatrzymanie puli aplikacji <em>reportsapi</em> instancji, która blokuje kontrolkę i restartowanie tej samej puli w używanej instancji.</p>
+
+<p class="pdf"><a href="/sample-docs/downloads/informacje-o-patchu-1.5.1.pdf" title="Pobierz PDF"><img src="/sample-docs/assets/PDF_32.png" alt="PDF" /></a></p>
+
+<h1 class="no_toc pdf" id="informacje-o-wersji-151-z-dn-11-01-2022">Informacje o wersji 1.5.1 z dn. 11-01-2022</h1>
+
+<h2 id="nowe-funkcje">Nowe funkcje</h2>
+
+<h5 id="np-3765">Konfiguracja listy użytkowników w strukturze organizacyjnej</h5>
+
+<p>Dodano możliwość konfigurowania kolumn listy użytkowników wyświetlanej na karcie <code class="language-plaintext highlighter-rouge">Użytkownicy</code> w formularzu <code class="language-plaintext highlighter-rouge">Edycja jednostki organizacyjnej</code> (<code class="language-plaintext highlighter-rouge">KONFIGURACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Struktura organizacyjna</code>).
+Funkcjonalność wymaga określenia następujących ustawień (<code class="language-plaintext highlighter-rouge">SYSTEM</code> &gt; <code class="language-plaintext highlighter-rouge">Ustawienia</code> &gt; <code class="language-plaintext highlighter-rouge">Struktura organizacyjna</code>):</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Włącz własne ustawienia listy użytkowników</code>: przełącznik włączający funkcjonalność.</li>
+  <li><code class="language-plaintext highlighter-rouge">Własne zapytanie dla dostępnych użytkowników</code>: zapytanie źródłowe dla listy użytkowników dodanych do jednostki organizacyjnej wyświetlanej na karcie <code class="language-plaintext highlighter-rouge">Użytkownicy</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Własne zapytanie dla użytkowników w jednostce organizacyjnej</code>: zapytanie źródłowe dla listy wyświetlanej po kliknięciu przycisku <code class="language-plaintext highlighter-rouge">Dodaj użytkownika</code>.</li>
+</ul>
+
+<p><em>(T:0650)</em></p>
+
+<h5 id="np-4014">Akcja <code class="language-plaintext highlighter-rouge">Odśwież listę</code></h5>
+
+<p>Dodano nową akcję systemową <code class="language-plaintext highlighter-rouge">Odśwież listę</code>. Akcja jest dostępna tylko dla przycisków widoku listy (<code class="language-plaintext highlighter-rouge">Konfigurator list</code> &gt; <code class="language-plaintext highlighter-rouge">Edycja listy</code> &gt; <code class="language-plaintext highlighter-rouge">Przyciski listy</code>), a jej wykonanie powoduje odświeżenie rekordów wyświetlanych w widoku listy.</p>
+
+<h5 id="np-2701">Uprawnienia ACL formularza dla tabeli katalogu</h5>
+
+<p>Dodano możliwość definiowania uprawnień ACL dla formularzy, dla których tabelą źródłową jest tabela katalogu.</p>
+
+<h5 id="np-3768">Weryfikacja rozszerzenia nazwy pliku przez Public API</h5>
+
+<p>Dodano weryfikację rozszerzenia nazwy pliku dodawanego jako załącznik w metodach interfejsu Public API.</p>
+
+<h2 id="poprawki-i-usunięte-błędy">Poprawki i usunięte błędy</h2>
+
+<h5 id="np-4192">Zadanie cykliczne — pomoc kontekstowa</h5>
+
+<p>Dodano pomoc kontekstową w oknie definiowania zadania cyklicznego. <em>(T:0828)</em></p>
+
+<h5 id="np-4104">Sekcja Kalendarz — pomoc kontekstowa</h5>
+
+<p>Dodano pomoc kontekstową do sekcji typu kalendarz.</p>
+
+<h5 id="np-4039">Eliminacja znaków diakrytycznych z kodów pól i sekcji</h5>
+
+<p>Ze względu na problemy w działaniu zależności wyeliminowano możliwość stosowania znaków diakrytycznych w kodach sekcji i pól formularza. Dozwolone znaki to: a-z, A-Z, 0-9, _ (podkreślenie) oraz - (myślnik). W związku z powyższym wprowadzono następujące zmiany:</p>
+<ul>
+  <li>generowane przez system kody sekcji nie będą zawierać znaków diakrytycznych,</li>
+  <li>podczas wprowadzania kodu znaki diakrytyczne są automatycznie zamieniane na odpowiadające im znaki alfabetu łacińskiego,</li>
+  <li>dodano skrypt zmieniający w bazie danych wszystkie wystąpienia ciągu <em>_Sekcja_Pola_Użytkownika</em> na <em>_Sekcja_Pola_Uzytkownika</em>.</li>
+</ul>
+
+<p>W istniejących formularzach konieczna jest ręczna zmiana kodów zawierających znaki spoza dozwolonego zestawu. Zmiana nazwy może się wiązać z koniecznością aktualizacji wszelkich referencji do danego kodu, np. w zależnościach.</p>
+
+<h5 id="np-4007">Identyfikatory GUID w kolumnie <em>Description</em></h5>
+
+<p>Wprowadzono modyfikację zapisu wartości w kolumnie <em>[Description]</em> tabeli <em>[core].[BusinessStatuses]</em>. Od tej pory w tej kolumnie będą zapisywane wyłącznie identyfikatory z kolumny <em>[Guid]</em> w tabeli <em>[core].[TranslationDefinitions]</em>. Zmiana dotyczy tylko wpisów dodawanych po aktualizacji do bieżącej wersji. <em>(T:0760)</em></p>
+
+<h5 id="np-4068">Obsługa wielkich liter w nazwach kolumn zapytania listy rozwijanej</h5>
+
+<p>Wprowadzono modyfikację kontrolki typu lista rozwijana, która zapewnia obsługę wielkich liter w nazwach kolumn zwracanych przez zapytanie źródłowe listy rozwijanej. Dotyczy to konfiguracji list wyboru na formularzu oraz w menu <code class="language-plaintext highlighter-rouge">Kontrolki</code>. <em>(T:0767)</em></p>
+
+<h5 id="np-4146">Odświeżanie aktywnego formularza po akcji <code class="language-plaintext highlighter-rouge">Zamknij formularz</code></h5>
+
+<p>Do akcji systemowej <code class="language-plaintext highlighter-rouge">Zamknij formularz</code> dodano przełącznik <code class="language-plaintext highlighter-rouge">Po zamknięciu odśwież aktywny formularz</code>. Jego włączenie powoduje, że po zamknięciu formularza wyświetlanego w trybie <code class="language-plaintext highlighter-rouge">Dialog</code> lub <code class="language-plaintext highlighter-rouge">Okno</code> odświeżany jest formularz/widok listy, z którego otwarto zamykany formularz. <em>(T:0793)</em></p>
+
+<h5 id="np-4018">Wyświetlanie formularza w trybie <em>dialog</em></h5>
+
+<p>Wprowadzono poprawkę eliminującą problemy z wyświetlaniem formularza w trybie <code class="language-plaintext highlighter-rouge">Dialog</code> bezpośrednio po uruchomieniu aplikacji. <em>(T:0744)</em></p>
+
+<h5 id="np-4113">Zależność kolumna-pole formularza dla listy interesariuszy</h5>
+
+<p>Poprawiono błąd, który powodował, że po zamknięciu okna konfiguracji listy wyboru była czyszczona ustawiona wcześniej  zależność kolumna-pole formularza w przypadku, gdy pole formularza było kontrolką interesariuszy.</p>
+
+<p><em>(T:0790, 0826)</em></p>
+
+<h5 id="np-4145">Przewijanie formularza po zmianie sekcji</h5>
+
+<p>Usunięto przyczynę przewijania formularza po kliknięciu zakładki sekcji na formularzu. <em>(T:0792)</em></p>
+
+<h5 id="np-3829">Oczekiwanie na zakończenie akcji zapisu</h5>
+
+<p>Wyeliminowano sytuację, w której próba wykonania innej czynności przed ukończeniem akcji zapisu kończyła się komunikatem o modyfikacji dokumentu przez innego użytkownika. Obecnie do chwili ukończenia zapisu użytkownik nie może podejmować innych czynności. <em>(T:0672)</em></p>
+
+<h5 id="np-4102">Wartość domyślna dla słownika hierarchicznego</h5>
+
+<p>Poprawiono błąd uniemożliwiający ustawianie wartości domyślnej dla kontrolki słownika hierarchicznego w przypadku, gdy wybrana wartość nie była hasłem pierwszego poziomu słownika.</p>
+
+<h5 id="np-4051">Zmiany menu systemowego i menu użytkownika</h5>
+
+<p>Wprowadzono następujące modyfikacje menu użytkownika:</p>
+<ul>
+  <li>Sekcja <code class="language-plaintext highlighter-rouge">Zdarzenia systemowe</code> nie jest już domyślnie wyświetlana na liście sekcji menu (<em>AdminSPA</em> &gt; <code class="language-plaintext highlighter-rouge">APLIKACJA</code> &gt; <code class="language-plaintext highlighter-rouge">Menu użytkownika</code>.</li>
+  <li>W aplikacji <em>FrontSPA</em> wyłączono podświetlanie pozycji menu, której nie przypisano formularza ani widoku listy.</li>
+</ul>
+
+<h5 id="np-4052">Kolumna <em>ArchiveStatus</em> w systemowej funkcji tabelarycznej</h5>
+
+<p>Poprawiono definicję funkcji tabelarycznej używanej przez polecenie <code class="language-plaintext highlighter-rouge">Utwórz flow</code> do definiowania źródła danych dla widoku listy (domyślna nazwa: <em>NazwaTabeli_View</em>). Obecnie ta funkcja uwzględnia kolumnę <code class="language-plaintext highlighter-rouge">ArchiveStatus</code> z tabeli dokumentu biznesowego.
+W przypadku funkcji tabelarycznych zdefiniowanych we wcześniejszych wersjach, konieczna jest ich samodzielna aktualizacja. W tym celu należy odnaleźć definicję funkcji w bazie danych (MS SQL Management Studio &gt; Databases &gt; <em>baza_danych</em> &gt; <code class="language-plaintext highlighter-rouge">Programmability</code> &gt; <code class="language-plaintext highlighter-rouge">Functions</code>  &gt; <code class="language-plaintext highlighter-rouge">Table-valued Functions</code> &gt; <em>nazwa_funkcji</em>), kliknąć ją prawym przyciskiem myszy i wybrać polecenie <code class="language-plaintext highlighter-rouge">Modify</code>. Następnie należy dopisać <em>d.[ArchiveStatus]</em> po kolumnie  <em>d.[ACLId]</em>.</p>
+
+<figure class="image" style="float:;clear:">
+   
+   <img id="np-4052-1.png" src="/sample-docs/assets/images/releasenotes/np-4052-1.png" alt="" title="np-4052-1.png" width="" height="" />
+   <figcaption>  </figcaption></figure>
+
+<p><em>(T:0768)</em></p>
+
+<h5 id="np-4075">Wartość domyślna kontrolki <code class="language-plaintext highlighter-rouge">Pole wyboru</code></h5>
+
+<p>Zmodyfikowano ustawianie wartości domyślnej w kontrolce <code class="language-plaintext highlighter-rouge">Pole wyboru</code>. Zarówno w przypadku zapytania SQL, jak i literału tekstowego obsługiwane są wartości <em>true</em>, <em>false</em>, <em>0</em> i <em>1</em>, w tym również ujęte w apostrofy (np. <em>‘false’</em>) i cudzysłowy (np. <em>“false”</em>).</p>
+<blockquote>
+  <p><strong>Info:</strong> jeśli wartość domyślna nie zostanie ustawiona, pole wyboru w nowym dokumencie ma domyślnie wartość <em>false</em>.</p>
+</blockquote>
+
+<h5 id="np-4058">Dodawanie/przenoszenie kontrolek do nowej sekcji</h5>
+
+<p>Usunięto błąd występujący podczas dodawania i przenoszenia kontrolek do nowo utworzonej sekcji.</p>
+
+<h5 id="np-4110">Akcja Import Excel</h5>
+
+<p>Usunięto błąd, który powodował, że podczas próby uruchomienia akcji typu <code class="language-plaintext highlighter-rouge">Import Excel</code> był wyświetlany komunikat o błędzie <code class="language-plaintext highlighter-rouge">Wybrana akcja nie istnieje w systemie</code>. <em>(T:0784)</em></p>
+
+<h5 id="np-4118">Transakcyjne wykonywanie akcji</h5>
+
+<p>Usunięto problem, który powodował, że umieszczenie akcji <code class="language-plaintext highlighter-rouge">Odśwież formularz</code> w sekwencji akcji wykonywanych transakcyjnie nie zawsze powodowało podział tej sekwencji na osobne transakcje.</p>
+
+<h5 id="np-4141">Akcja <code class="language-plaintext highlighter-rouge">Zmiana statusu dokumentu</code></h5>
+
+<p>Usunięto błąd, który uniemożliwiał edycję akcji <code class="language-plaintext highlighter-rouge">Zmiana statusu dokumentu</code> z poziomu okna wyboru akcji. <em>(T:0788, 0795)</em></p>
+
+<h5 id="np-4181">Akcja <code class="language-plaintext highlighter-rouge">Zamknij formularz</code></h5>
+
+<p>Usunięto błąd akcji zamykania formularza, który powodował zawieszanie się aplikacji.</p>
+
+<h5 id="np-4092">Kopiowanie formularza</h5>
+
+<p>Usunięto błąd, który powodował, że w operacji kopiowania formularza pomijane były ustawienia kolorów w sekcji <code class="language-plaintext highlighter-rouge">Toolbar</code>.</p>
+
+<h5 id="np-4158">Sekcja typu Lista</h5>
+
+<p>Usunięto problem, który powodował, że domyślnie zwinięta sekcja typu lista była po rozwinięciu zwężona i wymagała ręcznego rozszerzenia. <em>(T:0817)</em></p>
+
+<h5 id="np-4064">Kontrolka <code class="language-plaintext highlighter-rouge">Blok HTML</code></h5>
+
+<p>Usunięto problem z wyświetlaniem kontrolki <code class="language-plaintext highlighter-rouge">Blok HTML</code>, dla której nie zdefiniowano ustawień.</p>
+
+<h5 id="np-4083">Funkcja agregująca w stopce widoku listy</h5>
+
+<p>Usunięto błąd, który powodował, że po włączeniu grupowania widoku listy wartość funkcji agregującej w stopce nie wyświetlała się. <em>(T:0780)</em></p>
+
+<h5 id="np-4098">Lista wyboru SQL</h5>
+
+<p>Usunięto błąd, który powodował, że po zapisaniu rekordu w formularzu nie wyświetlała się wartość wybrana z listy rozwijanej, gdy klucz listy był typu <em>uniqueidentifier</em>. <em>(T:0769)</em></p>
+
+<h5 id="np-4230">Akcja uprawnień</h5>
+
+<p>Usunięto błąd walidacji zapytania SQL dla akcji uprawnień, który powodował, że kolumny <em>BusinessDocumentSchema</em> i <em>InstanceId</em> były traktowane jako wymagane. <em>(T:0842)</em></p>
+
+<h5 id="np-4032">Akcja <code class="language-plaintext highlighter-rouge">Odśwież stronę</code></h5>
+
+<p>Usunięto błąd akcji <code class="language-plaintext highlighter-rouge">Odśwież stronę</code>, który występował w przypadku wywoływania tej akcji z formularza otworzonego w trybie <code class="language-plaintext highlighter-rouge">Dialog</code>.</p>
+
+<h5 id="np-4203">Akcja interesariuszy</h5>
+
+<p>Usunięto błąd akcji interesariuszy. Obecnie wykonanie akcji dla przejścia workflow powoduje poprawne przypisanie użytkownika do listy interesariuszy. <em>(T:0834)</em></p>
+
+<h2 id="obejścia-znanych-błędów">Obejścia znanych błędów</h2>
+
+<h5 id="np-3845">Błąd rejestracji kontrolki podglądu raportu Telerik</h5>
+
+<p>Wykryto problem z użyciem sekcji podglądu raportu w przypadku jednoczesnego korzystania z kilku lokalnych instalacji nAxiom. Problem powoduje wyświetlenie w sekcji podglądu komunikatu o błędzie rejestracji kontrolki podglądu w związku z brakiem dostępu do określonej ścieżki. Problem ten zostanie rozwiązany w kolejnej wersji nAxiom. Doraźnym rozwiązaniem jest zatrzymanie puli aplikacji <em>reportsapi</em> instancji, która blokuje kontrolkę i restartowanie tej samej puli w używanej instancji. <em>(T:0682)</em></p>
+
+:ET
