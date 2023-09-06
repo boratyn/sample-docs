@@ -2,7 +2,7 @@
 title: "Topic based authoring — an old idea with modern tooling"
 layout: default_print
 keywords: article, white paper, knol, dita, topics, authoring, modular, topic, writing, technical communication, information, architecture, communication
-sidebar: mydoc_sidebar
+sidebar: 
 summary: What is "topic based authoring" and how to implement this approach with Jekyll.
 toc: true
 permalink: sample4
